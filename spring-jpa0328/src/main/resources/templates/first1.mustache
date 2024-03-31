@@ -1,0 +1,33 @@
+{{>layout/header}}
+<div>
+    <h1>처음 페이지</h1>
+    <h2>{{userName}}</h2>
+    <h2>{{post.prodName}}</h2>
+    {{#aaa}}
+    <h3>aaa 있다 {{aaa}}</h3>
+    {{/aaa}}
+    {{^aaa}}
+    <h3>aaa 없다</h3>
+    {{/aaa}}
+    <!-- 목록 출력 영역 -->
+        <table class="table table-horizontal table-bordered">
+            <thead class="thead-strong">
+            <tr>
+                <th>게시글번호</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>최종수정일</th>
+            </tr>
+            </thead>
+            <tbody id="tbody">
+            {{#posts}}
+                <tr>
+                    <td>{{prodId}}</td>
+                    <td><a href="/posts/update/{{prodId}}">{{prodName}}</a></td>
+                    <td>{{prodPrice}}</td>
+                </tr>
+            {{/posts}}
+            </tbody>
+        </table>
+</div>
+{{>layout/footer}}

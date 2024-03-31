@@ -1,0 +1,5 @@
+GET http://localhost:8080/api/v6/orders
+Content-Type: application/json
+
+{
+}

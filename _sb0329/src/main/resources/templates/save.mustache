@@ -1,0 +1,23 @@
+{{>layout/header}}
+
+<h1>상품 등록</h1>
+
+<div class="col-md-12">
+    <div class="col-md-4">
+        <form action="/new" method="post">
+            <div class="form-group">
+                <label for="title"> 상품명 </label>
+                <input type="text" class="form-control" name="prodName" placeholder="상품명을 입력하세요">
+            </div>
+            <div class="form-group">
+                <label for="author"> 가격 </label>
+                <input type="text" class="form-control" name="prodPrice" placeholder="가격를 입력하세요">
+            </div>
+            <a href="/" role="button" class="btn btn-secondary">취소</a>
+        	<input type="submit" class="btn btn-primary" id="btn-save" value="등록">
+        </form>
+        
+    </div>
+</div>
+
+{{>layout/footer}}

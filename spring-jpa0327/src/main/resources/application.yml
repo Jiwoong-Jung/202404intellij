@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    url: jdbc:h2:~/test  # H2 접속 정보
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create # create / none
+    properties:
+      hibernate:
+#        show_sql: true
+        format_sql: true
+        default_batch_fetch_size: 100 # 100~1000 권장
+
+logging.level:
+  org.hibernate.SQL: debug
+#  org.hibernate.type: trace
