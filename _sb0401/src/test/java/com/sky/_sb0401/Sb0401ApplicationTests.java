@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.stream.IntStream;
+
 @SpringBootTest
 class Sb0401ApplicationTests {
 
@@ -26,6 +28,19 @@ class Sb0401ApplicationTests {
                 .memoText("이것은 테스트")
                 .build();
         memoRepository.save(memo);
+    }
+
+    @Test
+    void inertMemos() {
+        IntStream.rangeClosed(1, 10).forEach(i->{
+            Memo memo = Memo.builder()
+                    .memoText("이것은 테스트..."+i)
+                    .build();
+            memoRepository.save(memo);
+        });
+
+
+//        memoRepository.save(memo);
     }
 
 }
