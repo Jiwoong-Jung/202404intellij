@@ -1,5 +1,6 @@
 package com.sky._sb0401;
 
+import com.sky._sb0401.entity.Memo;
 import com.sky._sb0401.repository.MemoRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,7 +22,10 @@ class Sb0401ApplicationTests {
     @Test
     @DisplayName("메모 입력 테스트")
     void inertMemo() {
-
+        Memo memo = Memo.builder()
+                .memoText("이것은 테스트")
+                .build();
+        memoRepository.save(memo);
     }
 
 }
