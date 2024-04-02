@@ -6,5 +6,13 @@
 </head>
 <body>
 <h1>처음 페이지</h1>
+<h2>[[${name}]]</h2>
+<h2 th:text="${name}"></h2>
+<div th:if="${name} == '이순신'">
+    <p>이순신입니다.</p>
+</div>
+<div th:unless="${name} == '영희'">
+    <p>영희가 아닙니다.</p>
+</div>
 </body>
 </html>
