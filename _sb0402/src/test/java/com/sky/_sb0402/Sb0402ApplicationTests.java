@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
 import java.util.stream.IntStream;
 
 @SpringBootTest
@@ -37,6 +38,17 @@ class Sb0402ApplicationTests {
                 .memo("이것은 메모31")
                 .build();
         myDataRepository.save(myData);
+    }
+
+    @Test
+    void selectAllMyData() {
+        List<MyData> list = myDataRepository.findAll();
+        list.stream().forEach(m->{
+            System.out.println(m);
+        });
+//        for (MyData myData : list) {
+//            System.out.println(myData);
+//        }
     }
 
 }
