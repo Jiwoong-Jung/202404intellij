@@ -1,0 +1,25 @@
+{{>layout/header}}
+
+    <!-- 목록 출력 영역 -->
+        <table class="table table-horizontal table-bordered">
+            <thead class="thead-strong">
+            <tr>
+                <th>번호</th>
+                <th>고객명</th>
+                <th>상품명</th>
+                <th>수량</th>
+            </tr>
+            </thead>
+            <tbody id="tbody">
+            {{#list}}
+                <tr>
+                    <td>{{orderId}}</td>
+                    <td><a href="/posts/update/{{orderId}}">{{memberId}}</a></td>
+                    <td>{{prodId}}</td>
+                    <td>{{count}}</td>
+                </tr>
+            {{/list}}
+            </tbody>
+        </table>
+        <a href="/" role="button" class="btn btn-secondary">처음으로</a>
+{{>layout/footer}}
