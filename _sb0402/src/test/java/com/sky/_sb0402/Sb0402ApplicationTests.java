@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.IntStream;
 
 @SpringBootTest
@@ -49,6 +50,11 @@ class Sb0402ApplicationTests {
 //        for (MyData myData : list) {
 //            System.out.println(myData);
 //        }
+    }
+    @Test
+    void selectOne() {
+        Optional<MyData> myData = myDataRepository.findById(1L);
+        System.out.println(myData);
     }
 
 }
