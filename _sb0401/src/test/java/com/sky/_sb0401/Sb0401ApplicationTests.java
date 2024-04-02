@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import javax.transaction.Transactional;
 import java.util.stream.IntStream;
 
 @SpringBootTest
@@ -38,9 +39,14 @@ class Sb0401ApplicationTests {
                     .build();
             memoRepository.save(memo);
         });
+    }
 
-
-//        memoRepository.save(memo);
+    @Test
+    @Transactional
+    void selectMemos() {
+       Long mno = 10L;
+        Memo memo = memoRepository.getOne(mno);
+        System.out.println(memo);
     }
 
 }

@@ -13,6 +13,7 @@ import javax.persistence.Id;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class Memo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
