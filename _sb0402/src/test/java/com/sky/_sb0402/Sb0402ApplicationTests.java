@@ -54,7 +54,10 @@ class Sb0402ApplicationTests {
     @Test
     void selectOne() {
         Optional<MyData> myData = myDataRepository.findById(1L);
-        System.out.println(myData);
+        if (myData.isPresent()) {
+            System.out.println(myData.get());
+        }
+
     }
 
 }
