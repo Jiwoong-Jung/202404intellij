@@ -53,11 +53,17 @@ class Sb0402ApplicationTests {
     }
     @Test
     void selectOne() {
-        Optional<MyData> myData = myDataRepository.findById(1L);
+        Optional<MyData> myData = myDataRepository.findById(100L);
         if (myData.isPresent()) {
             System.out.println(myData.get());
+        } else {
+            System.out.println("자료 없음");
         }
+    }
 
+    @Test
+    void deleteOne() {
+        myDataRepository.deleteById(10L);
     }
 
 }
