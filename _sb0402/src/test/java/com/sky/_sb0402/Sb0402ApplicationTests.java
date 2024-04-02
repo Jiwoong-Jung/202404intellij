@@ -27,4 +27,16 @@ class Sb0402ApplicationTests {
         });
     }
 
+    @Test
+    void updateMyData() {
+        MyData myData = MyData.builder()
+                .id(1L)
+                .age(31)
+                .mail("kim31@korea.com")
+                .name("Kim31")
+                .memo("이것은 메모31")
+                .build();
+        myDataRepository.save(myData);
+    }
+
 }
