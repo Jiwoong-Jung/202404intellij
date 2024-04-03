@@ -15,9 +15,15 @@
     <p>영희가 아닙니다.</p>
 </div>
 <ul>
-    <li th:each="dto : ${list}">
-        [[${dto}]]
+    <li th:each="mydata : ${list}">
+        [[${mydata.id}]], [[${mydata.name}]], [[${mydata.mail}]]
     </li>
 </ul>
+<table th:border="1">
+    <tr>
+        <td>1231</td><td>5678</td>
+    </tr>
+</table>
+
 </body>
 </html>

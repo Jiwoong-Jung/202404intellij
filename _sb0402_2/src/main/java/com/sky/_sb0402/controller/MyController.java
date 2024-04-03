@@ -15,8 +15,8 @@ public class MyController {
     @GetMapping("/")
     public String main(Model model) {
         model.addAttribute("name", "이순신");
-        model.addAttribute("list", myDataRepository.findAll());
-//        model.addAttribute("list", myDataRepository.findAll2());
+//        model.addAttribute("list", myDataRepository.findAll());
+        model.addAttribute("list", myDataRepository.findAll2());
         return "root";
     }
 
