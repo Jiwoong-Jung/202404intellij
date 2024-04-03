@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>For Member ....................</h1>
+
+<div sec:authorize="hasRole('USER')">Has USER ROLE</div>
+<div sec:authorize="hasRole('MANAGER')">Has MANAGER ROLE</div>
+<div sec:authorize="hasRole('ADMIN')">Has ADMIN ROLE</div>
+
+<div sec:authorize="isAuthenticated()">
+    Only Authenticated user can see this Text
+</div>
+
+Authenticated username:
+<div sec:authentication="name"></div>
+Authenticated user roles:
+<div sec:authentication="principal.authorities">
+
+</div>
+
+</div>
+
+</body>
+</html>

@@ -14,5 +14,10 @@
 <div th:unless="${name} == '영희'">
     <p>영희가 아닙니다.</p>
 </div>
+<ul>
+    <li th:each="dto : ${list}">
+        [[${dto}]]
+    </li>
+</ul>
 </body>
 </html>

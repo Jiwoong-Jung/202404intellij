@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http//www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/basic.html}">
+
+<div layout:fragment="content">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<h1>For Member ....................</h1>
+
+<div sec:authorize="hasRole('USER')">Has USER ROLE</div>
+<div sec:authorize="hasRole('MANAGER')">Has MANAGER ROLE</div>
+<div sec:authorize="hasRole('ADMIN')">Has ADMIN ROLE</div>
+
+<div sec:authorize="isAuthenticated()">
+  Only Authenticated user can see this Text
+</div>
+
+Authenticated username:
+<div sec:authentication="name"></div>
+Authenticated user roles:
+<div sec:authentication="principal.authorities">
+
+</div>
+
+</body>
+</div>
+</html>

@@ -66,4 +66,15 @@ class Sb04022ApplicationTests {
         myDataRepository.deleteById(10L);
     }
 
+    @Test
+    void find2() {
+        List<MyData> list = myDataRepository.findByIdBetween(3L, 7L);
+        list.stream().forEach(m->{
+            System.out.println(m);
+        });
+//        for (MyData myData : list) {
+//            System.out.println(myData);
+//        }
+    }
+
 }
