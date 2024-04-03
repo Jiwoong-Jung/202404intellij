@@ -28,6 +28,25 @@
         <td>[[${dto.age}]]</td>
     </tr>
 </table>
-
+<br/>
+<table th:border="1">
+    <tr><th>번호</th><th>이름</th><th>이메일</th><th>나이</th></tr>
+    <tr th:each="dto : ${list}" th:object="${dto}">
+        <td>[[*{id}]]</td>
+        <td>[[*{name}]]</td>
+        <td>[[*{mail}]]</td>
+        <td>[[*{age}]]</td>
+    </tr>
+</table>
+<br/>
+<table th:border="1">
+    <tr><th>번호</th><th>이름</th><th>이메일</th><th>나이</th></tr>
+    <tr th:each="dto : ${list}" th:object="${dto}">
+        <td th:text="*{id}"></td>
+        <td th:text="*{name}"></td>
+        <td th:text="*{mail}"></td>
+        <td th:text="*{age}"></td>
+    </tr>
+</table>
 </body>
 </html>
