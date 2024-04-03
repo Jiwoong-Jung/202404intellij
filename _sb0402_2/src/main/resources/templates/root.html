@@ -20,8 +20,12 @@
     </li>
 </ul>
 <table th:border="1">
-    <tr>
-        <td>1231</td><td>5678</td>
+    <tr><th>번호</th><th>이름</th><th>이메일</th><th>나이</th></tr>
+    <tr th:each="dto : ${list}">
+        <td>[[${dto.id}]]</td>
+        <td>[[${dto.name}]]</td>
+        <td>[[${dto.mail}]]</td>
+        <td>[[${dto.age}]]</td>
     </tr>
 </table>
 
