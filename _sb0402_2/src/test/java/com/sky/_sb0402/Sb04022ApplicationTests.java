@@ -77,4 +77,15 @@ class Sb04022ApplicationTests {
 //        }
     }
 
+    @Test
+    void find3() {
+        List<MyData> list = myDataRepository.findAll2();
+        list.stream().forEach(m->{
+            System.out.println(m);
+        });
+//        for (MyData myData : list) {
+//            System.out.println(myData);
+//        }
+    }
+
 }
