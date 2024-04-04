@@ -45,7 +45,7 @@ class Sb0401ApplicationTests {
                 .memoText("이것은 EM 테스트")
                 .build();
         em.persist(memo);
-        em.flush();
+
     }
 
     @Test
