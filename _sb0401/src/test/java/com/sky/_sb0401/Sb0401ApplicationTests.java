@@ -30,10 +30,22 @@ class Sb0401ApplicationTests {
 
     @Test
     void emTest2() {
-        List<Memo> list = em.createQuery("from Memo m where m.mno > 5", Memo.class).getResultList();
+        List<Memo> list
+                = em.createQuery("from Memo m where m.mno > 5", Memo.class)
+                                                   .getResultList();
         list.stream().forEach(e->{
             System.out.println(e);
         });
+    }
+
+    @Test
+    @Transactional
+    void emInsert() {
+        Memo memo = Memo.builder()
+                .memoText("이것은 EM 테스트")
+                .build();
+        em.persist(memo);
+        em.flush();
     }
 
     @Test
