@@ -1,5 +1,7 @@
 package com.sky._sb0401;
 
+import com.sky._sb0401.entity.Board;
+import com.sky._sb0401.entity.Member;
 import com.sky._sb0401.entity.Memo;
 import com.sky._sb0401.repository.MemoRepository;
 import org.junit.jupiter.api.DisplayName;
@@ -21,6 +23,17 @@ class Sb0401ApplicationTests {
 
     @PersistenceContext
     private EntityManager em;
+
+    @Test
+    @Transactional
+    void m1Test() {
+        Member member = Member.builder().name("홍길동").password("1234").role("사용자").userId("hong").build();
+        em.persist(member);
+        Board board = Board.builder().cnt(0L).title("처음 제목").content("처음 글 내용").member(member).build();
+        em.persist(board);
+
+    }
+
 
     @Test
     void emTest() {
