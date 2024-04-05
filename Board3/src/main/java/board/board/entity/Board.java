@@ -28,5 +28,7 @@ public class Board {
 	private String updaterId;
 	
 	private String updatedDatetime;
+
+	@Column(columnDefinition = "varchar(2) default 'N'")
 	private String deletedYn;
 }
