@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>104BB7C6-DCBA-4553-BACD-1FE02A0C9449</title>
+    <defs>
+        <polygon id="path-1" points="-0.06 6.47 3 3.41666667 6.06 6.47 7 5.53 3 1.53 -1 5.53"></polygon>
+    </defs>
+    <g id="P_로그인,회원가입" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="P.14.0333/회원가입완료" transform="translate(-216.000000, -668.000000)">
+            <g id="btn" transform="translate(146.000000, 664.000000)">
+                <g id="icon/16/arrow_small/right" transform="translate(70.000000, 4.000000)">
+                    <g id="icon/resource/16/arrow_small/right" transform="translate(5.000000, 4.000000)">
+                        <mask id="mask-2" fill="white">
+                            <use xlink:href="#path-1"></use>
+                        </mask>
+                        <use id="down_arrow" fill="#222222" transform="translate(3.000000, 4.000000) rotate(90.000000) translate(-3.000000, -4.000000) " xlink:href="#path-1"></use>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
