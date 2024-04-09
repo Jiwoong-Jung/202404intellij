@@ -49,7 +49,12 @@ public class RegisterController {
 
 	@ModelAttribute
 	public void case1(Model model) {
-		model.addAttribute("value1",  "안녕하세요?");
+		model.addAttribute("value1", "안녕하세요?");
+	}
+
+	@ModelAttribute("value2")
+	public String case2() {
+		return "반갑습니다.";
 	}
 
 }
