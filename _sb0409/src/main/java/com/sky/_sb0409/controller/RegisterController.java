@@ -1,8 +1,8 @@
-package com.sky._sb0408.controller;
+package com.sky._sb0409.controller;
 
-import com.sky._sb0408.spring.DuplicateMemberException;
-import com.sky._sb0408.spring.MemberRegisterService;
-import com.sky._sb0408.spring.RegisterRequest;
+import com.sky._sb0409.spring.DuplicateMemberException;
+import com.sky._sb0409.spring.MemberRegisterService;
+import com.sky._sb0409.spring.RegisterRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,7 +27,7 @@ public class RegisterController {
 		if (!agree) {
 			return "register/step1";
 		}
-		model.addAttribute("formData", new RegisterRequest());
+		model.addAttribute("registerRequest", new RegisterRequest());
 		return "register/step2";
 	}
 
@@ -37,7 +37,7 @@ public class RegisterController {
 	}
 
 	@PostMapping("/step3")
-	public String handleStep3(@ModelAttribute("formData") RegisterRequest regReq) {
+	public String handleStep3(RegisterRequest regReq) {
 		try {
 			memberRegisterService.regist(regReq);
 			return "register/step3";
