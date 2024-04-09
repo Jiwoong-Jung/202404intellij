@@ -27,6 +27,11 @@ dependencies {
     implementation 'mysql:mysql-connector-java:8.0.33'
     implementation 'org.slf4j:slf4j-api:1.7.25'
     implementation 'ch.qos.logback:logback-classic:1.2.3'
+
+    compileOnly 'org.projectlombok:lombok:1.18.20'
+    annotationProcessor 'org.projectlombok:lombok:1.18.20'
+    testAnnotationProcessor 'org.projectlombok:lombok' // 테스트를 위한 세팅 @Slf4j
+    testImplementation 'org.projectlombok:lombok' // 테스트를 위한 세팅 @Slf4j
 }
 
 tasks.named('test') {
