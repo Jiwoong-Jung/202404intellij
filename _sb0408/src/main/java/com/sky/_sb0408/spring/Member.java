@@ -48,4 +48,14 @@ public class Member {
 		this.password = newPassword;
 	}
 
+	@Override
+	public String toString() {
+		return "Member{" +
+				"id=" + id +
+				", email='" + email + '\'' +
+				", password='" + password + '\'' +
+				", name='" + name + '\'' +
+				", registerDateTime=" + registerDateTime +
+				'}';
+	}
 }
