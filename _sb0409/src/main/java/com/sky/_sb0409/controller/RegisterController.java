@@ -1,6 +1,7 @@
 package com.sky._sb0409.controller;
 
 import com.sky._sb0409.spring.DuplicateMemberException;
+import com.sky._sb0409.spring.MemberListService;
 import com.sky._sb0409.spring.MemberRegisterService;
 import com.sky._sb0409.spring.RegisterRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,9 @@ public class RegisterController {
 
 	@Autowired
 	private MemberRegisterService memberRegisterService;
+
+	@Autowired
+	private MemberListService memberListService;
 
 	@RequestMapping("/step1")
 	public String handleStep1() {
@@ -45,6 +49,12 @@ public class RegisterController {
 			System.out.println("DuplicateMemberException 발생!!!");
 			return "register/step2";
 		}
+	}
+
+	@GetMapping("/list")
+	public String showMemList(Model model) {
+		model.addAttribute("list", memberListService.getMemberList());
+		return "register/memberList";
 	}
 
 	@ModelAttribute
