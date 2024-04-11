@@ -15,7 +15,12 @@
                     <label>
                         <input type="radio" name="dataList[${sta.index}]" value="${opt}">${opt}
                     </label>
-
+                    <c:if test="${q.choice}">
+                        ${q.choice}<br/>
+                    </c:if>
+                    <c:if test="${!q.choice}">
+                        없다<br/>
+                    </c:if>
                 </c:forEach>
             </p>
         </c:forEach>

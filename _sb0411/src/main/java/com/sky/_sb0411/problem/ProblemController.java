@@ -22,7 +22,8 @@ public class ProblemController {
                 Arrays.asList("백엔드", "프론트", "DBA", "웹디자인"));
         Question q2 = new Question("많이 사용하는 개발도구는 무엇입니까?",
                 Arrays.asList("이클립스", "인텔리J", "서브라임"));
-        model.addAttribute("questions", Arrays.asList(q1, q2));
+        Question q3 = new Question("하고 싶은 말은?");
+        model.addAttribute("questions", Arrays.asList(q1, q2, q3));
 
         return "problem/problemForm";
     }
