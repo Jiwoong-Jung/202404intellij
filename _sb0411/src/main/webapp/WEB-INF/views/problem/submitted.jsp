@@ -8,8 +8,8 @@
 <body>
     <p>응답 내용:</p>
     <ul>
-        <c:forEach var="data" items="${ansData.dataList}">
-            <li>${data}</li>
+        <c:forEach var="data" items="${ansData.dataList}" varStatus="sta">
+            <li>${sta.index+1}번 응답: ${data}</li>
         </c:forEach>
     </ul>
 </body>

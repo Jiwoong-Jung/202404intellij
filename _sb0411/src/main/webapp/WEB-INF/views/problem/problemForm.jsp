@@ -10,7 +10,7 @@
     <form method="post">
         <c:forEach var="q" items="${questions}" varStatus="sta">
             <p>
-                    ${sta.index} - ${q.title}<br/>
+                    ${sta.index+1}. ${q.title}<br/>
                 <c:forEach var="opt" items="${q.options}">
                     <label>
                         <input type="radio" name="dataList[${sta.index}]" value="${opt}">${opt}
