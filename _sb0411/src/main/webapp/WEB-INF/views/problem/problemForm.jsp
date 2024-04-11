@@ -8,12 +8,12 @@
 <body>
     <h2>테스트</h2>
     <form method="post">
-        <c:forEach var="q" items="${questions}">
+        <c:forEach var="q" items="${questions}" varStatus="sta">
             <p>
-                    ${q.title}<br/>
+                    ${sta.index} - ${q.title}<br/>
                 <c:forEach var="opt" items="${q.options}">
                     <label>
-                        <input type="radio" name="dataList[0]" value="${opt}">${opt}
+                        <input type="radio" name="dataList[${sta.index}]" value="${opt}">${opt}
                     </label>
 
                 </c:forEach>
