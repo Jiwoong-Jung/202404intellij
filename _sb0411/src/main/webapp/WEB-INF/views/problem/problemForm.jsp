@@ -8,16 +8,23 @@
 <body>
     <h2>테스트</h2>
     <form method="post">
+        <c:forEach var="q" items="${questions}">
+            <p>
+                    ${q.title}<br/>
+                <c:forEach var="opt" items="${q.options}">
+                    <label>
+                        <input type="radio" name="dataList[0]" value="${opt}">${opt}
+                    </label>
 
-        <p>
-            ${question.title}<br/>
-            <c:forEach var="opt" items="${question.options}">
-                <label>
-                    <input type="radio" name="dataList[0]" value="${opt}">${opt}
-                </label>
+                </c:forEach>
+            </p>
+        </c:forEach>
 
-            </c:forEach>
-        </p>
+
+
+
+
+
 
         <input type="submit" value="확인">
     </form>
