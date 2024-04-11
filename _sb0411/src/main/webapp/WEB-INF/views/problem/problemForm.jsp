@@ -25,7 +25,7 @@
                 풀스택</label>
 
             <label><input type="radio"
-                          name="responses[0]" value="백엔드">
+                          name="dataList[0]" value="백엔드">
                 백엔드</label>
         </p>
 
