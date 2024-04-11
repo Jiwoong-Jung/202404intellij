@@ -20,6 +20,8 @@ public class ProblemController {
 
         Question q1 = new Question("당신의 역할은 무엇입니까?",
                 Arrays.asList("백엔드", "프론트", "DBA", "웹디자인"));
+        Question q1 = new Question("당신의 역할은 무엇입니까?",
+                Arrays.asList("백엔드", "프론트", "DBA", "웹디자인"));
         model.addAttribute("question", q1);
         return "problem/problemForm";
     }

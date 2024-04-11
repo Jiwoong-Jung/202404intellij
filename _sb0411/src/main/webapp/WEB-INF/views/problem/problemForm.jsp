@@ -10,23 +10,13 @@
     <form method="post">
 
         <p>
-            1. 당신의 역할은 무엇입니까?<br/>
+            ${question.title}<br/>
+            <c:forEach var="opt" items="${question.options}">
+                <label>
+                    <input type="radio" name="dataList[0]" value="${opt}">${opt}
+                </label>
 
-            <label><input type="radio"
-                          name="dataList[0]" value="서버">
-                서버</label>
-
-            <label><input type="radio"
-                          name="dataList[0]" value="프론트">
-                프론트</label>
-
-            <label><input type="radio"
-                          name="dataList[0]" value="풀스택">
-                풀스택</label>
-
-            <label><input type="radio"
-                          name="dataList[0]" value="백엔드">
-                백엔드</label>
+            </c:forEach>
         </p>
 
         <input type="submit" value="확인">
