@@ -7,6 +7,10 @@
 </head>
 <body>
     <p>응답 내용:</p>
-
+    <ul>
+        <c:forEach var="data" items="${ansData.dataList}">
+            <li>${data}</li>
+        </c:forEach>
+    </ul>
 </body>
 </html>
