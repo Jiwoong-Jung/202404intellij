@@ -26,12 +26,6 @@
             </p>
         </c:forEach>
 
-
-
-
-
-
-
         <input type="submit" value="확인">
     </form>
 </body>
