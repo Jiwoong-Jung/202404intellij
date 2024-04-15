@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>테스트</title>
+</head>
+<body>
+<h2>테스트</h2>
+<form method="post">
+    <div th:each="q, sta : ${questions}">
+        <p>
+            <span th:text="${sta.index+1}">1</span>. <span th:text="${q.title}">Title</span><br/>
+        <div th:if="${q.choice}">
+                    <span th:each="opt : ${q.options}">
+                        <label>
+                            <input type="radio" th:name="'dataList[' + ${sta.index} + ']'" th:value="${opt}" th:text="${opt}">
+                        </label>
+                    </span>
+        </div>
+        <div th:if="${!q.choice}">
+            <input type="text" th:name="'dataList[' + ${sta.index} + ']'">
+        </div>
+        </p>
+    </div>
+    <p>
+        <label>응답자 이름:<br>
+            <input type="text" name="name">
+        </label>
+    </p>
+    <p>
+        <label>응답자 나이:<br>
+            <input type="text" name="age">
+        </label>
+    </p>
+    <input type="submit" value="확인">
+</form>
+</body>
+</html>

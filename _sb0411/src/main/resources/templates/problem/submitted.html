@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>응답 내용</title>
+</head>
+<body>
+<p>응답 내용:</p>
+<ul>
+    <li th:each="data, sta : ${ansData.dataList}">
+        <span th:text="${sta.index+1}">1</span>번 응답: <span th:text="${data}">Data</span>
+    </li>
+</ul>
+<p>응답자 이름: <span th:text="${ansData.name}">Name</span></p>
+<p>응답자 나이: <span th:text="${ansData.age}">Age</span></p>
+</body>
+</html>
