@@ -8,7 +8,7 @@
 <form method="post">
     <div th:each="q, sta : ${questions}">
         <p>
-            <span th:text="${sta.index+1}">1</span>. <span th:text="${q.title}">Title</span><br/>
+            <span th:text="${sta.index+1}"></span> <span th:text="${q.title}"></span><br/>
         <div th:if="${q.choice}">
                     <span th:each="opt : ${q.options}">
                         <label>
