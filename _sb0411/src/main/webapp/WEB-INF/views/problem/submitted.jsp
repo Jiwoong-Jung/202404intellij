@@ -12,5 +12,7 @@
             <li>${sta.index+1}번 응답: ${data}</li>
         </c:forEach>
     </ul>
+    <p>응답자 위치: ${ansData.name}</p>
+    <p>응답자 나이: ${ansData.age}</p>
 </body>
 </html>
