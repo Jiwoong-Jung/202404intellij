@@ -27,7 +27,12 @@
     </p>
     <p>
         <label>선호 OS</label>
-        <form:checkboxes items="${favoriteOsNames}" path="favoriteOs" />
+<%--        <form:checkboxes items="${favoriteOsNames}" path="favoriteOs" />--%>
+    </p>
+    <p>
+        <label>선호 OS</label>
+        <form:checkboxes items="${favoriteOsCodes}" path="favoriteOs"
+                         itemValue="code" itemLabel="label" />
     </p>
 
 
