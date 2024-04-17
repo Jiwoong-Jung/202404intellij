@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:replace="~{/layout/basic :: setContent(~{this::content} )}">
+
+    <th:block th:fragment="content">
+
+        <h1 class="mt-4">Movie List Page
+            <span>
+                <a th:href="@{/movie/register}">
+                    <button type="button" class="btn btn-outline-primary">REGISTER
+                    </button>
+                </a>
+            </span>
+        </h1>
+
+        <form action="/movie/list" method="get" id="searchForm">
+            <input type="hidden" name="page" value="1">
+        </form>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Picture</th>
+                <th scope="col">Review Count</th>
+                <th scope="col">AVG Rating</th>
+                <th scope="col">Regdate</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr th:each="dto : ${result.dtoList}" >
+                <th scope="row">
+                    <a th:href="@{/movie/read(mno = ${dto.mno}, page= ${result.page})}">
+                        [[${dto.mno}]]
+                    </a>
+                </th>
+                <td><img th:if="${dto.imageDTOList.size() > 0 && dto.imageDTOList[0].path != null }"
+                         th:src="|/display?fileName=${dto.imageDTOList[0].getThumbnailURL()}|" >[[${dto.title}]]</td>
+                <td><b>[[${dto.reviewCnt}]]</b></td>
+                <td><b>[[${dto.avg}]]</b></td>
+                <td>[[${#temporals.format(dto.regDate, 'yyyy/MM/dd')}]]</td>
+            </tr>
+
+            </tbody>
+        </table>
+
+        <ul class="pagination h-100 justify-content-center align-items-center">
+
+            <li class="page-item " th:if="${result.prev}">
+                <a class="page-link" th:href="@{/movie/list(page= ${result.start -1})}" tabindex="-1">Previous</a>
+            </li>
+
+            <li th:class=" 'page-item ' + ${result.page == page?'active':''} " th:each="page: ${result.pageList}">
+                <a class="page-link" th:href="@{/movie/list(page = ${page})}">
+                    [[${page}]]
+                </a>
+            </li>
+
+            <li class="page-item" th:if="${result.next}">
+                <a class="page-link" th:href="@{/movie/list(page= ${result.end + 1} )}">Next</a>
+            </li>
+        </ul>
+
+
+        <script th:inline="javascript">
+
+        </script>
+    </th:block>
+
+</th:block>

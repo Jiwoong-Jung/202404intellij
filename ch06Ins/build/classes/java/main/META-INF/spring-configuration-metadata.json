@@ -1,0 +1,409 @@
+{
+  "groups": [
+    {
+      "name": "mybatis.configuration",
+      "type": "org.apache.ibatis.session.Configuration",
+      "sourceType": "board.configuration.DatabaseConfiguration",
+      "sourceMethod": "mybatisConfig()"
+    },
+    {
+      "name": "spring.datasource.hikari",
+      "type": "com.zaxxer.hikari.HikariConfig",
+      "sourceType": "board.configuration.DatabaseConfiguration",
+      "sourceMethod": "hikariConfig()"
+    }
+  ],
+  "properties": [
+    {
+      "name": "mybatis.configuration.aggressive-lazy-loading",
+      "type": "java.lang.Boolean",
+      "sourceType": "org.apache.ibatis.session.Configuration"
+    },
+    {
+      "name": "mybatis.configuration.auto-mapping-behavior",
+      "type": "org.apache.ibatis.session.AutoMappingBehavior",
+      "sourceType": "org.apache.ibatis.session.Configuration"
+    },
+    {
+      "name": "mybatis.configuration.auto-mapping-unknown-column-behavior",
+      "type": "org.apache.ibatis.session.AutoMappingUnknownColumnBehavior",
+      "sourceType": "org.apache.ibatis.session.Configuration"
+    },
+    {
+      "name": "mybatis.configuration.cache-enabled",
+      "type": "java.lang.Boolean",
+      "sourceType": "org.apache.ibatis.session.Configuration"
+    },
+    {
+      "name": "mybatis.configuration.cache-names",
+      "type": "java.util.Collection<java.lang.String>",
+      "sourceType": "org.apache.ibatis.session.Configuration"
+    },
+    {
+      "name": "mybatis.configuration.caches",
+      "type": "java.util.Collection<org.apache.ibatis.cache.Cache>",
+      "sourceType": "org.apache.ibatis.session.Configuration"
+    },
+    {
+      "name": "mybatis.configuration.call-setters-on-nulls",
+      "type": "java.lang.Boolean",
+      "sourceType": "org.apache.ibatis.session.Configuration"
+    },
+    {
+      "name": "mybatis.configuration.configuration-factory",
+      "type": "java.lang.Class<?>",
+      "sourceType": "org.apache.ibatis.session.Configuration"
+    },
+    {
+      "name": "mybatis.configuration.database-id",
+      "type": "java.lang.String",
+      "sourceType": "org.apache.ibatis.session.Configuration"
+    },
+    {
+      "name": "mybatis.configuration.default-executor-type",
+      "type": "org.apache.ibatis.session.ExecutorType",
+      "sourceType": "org.apache.ibatis.session.Configuration"
+    },
+    {
+      "name": "mybatis.configuration.default-fetch-size",
+      "type": "java.lang.Integer",
+      "sourceType": "org.apache.ibatis.session.Configuration"
+    },
+    {
+      "name": "mybatis.configuration.default-statement-timeout",
+      "type": "java.lang.Integer",
+      "sourceType": "org.apache.ibatis.session.Configuration"
+    },
+    {
+      "name": "mybatis.configuration.environment",
+      "type": "org.apache.ibatis.mapping.Environment",
+      "sourceType": "org.apache.ibatis.session.Configuration"
+    },
+    {
+      "name": "mybatis.configuration.incomplete-cache-refs",
+      "type": "java.util.Collection<org.apache.ibatis.builder.CacheRefResolver>",
+      "sourceType": "org.apache.ibatis.session.Configuration"
+    },
+    {
+      "name": "mybatis.configuration.incomplete-methods",
+      "type": "java.util.Collection<org.apache.ibatis.builder.annotation.MethodResolver>",
+      "sourceType": "org.apache.ibatis.session.Configuration"
+    },
+    {
+      "name": "mybatis.configuration.incomplete-result-maps",
+      "type": "java.util.Collection<org.apache.ibatis.builder.ResultMapResolver>",
+      "sourceType": "org.apache.ibatis.session.Configuration"
+    },
+    {
+      "name": "mybatis.configuration.incomplete-statements",
+      "type": "java.util.Collection<org.apache.ibatis.builder.xml.XMLStatementBuilder>",
+      "sourceType": "org.apache.ibatis.session.Configuration"
+    },
+    {
+      "name": "mybatis.configuration.interceptors",
+      "type": "java.util.List<org.apache.ibatis.plugin.Interceptor>",
+      "sourceType": "org.apache.ibatis.session.Configuration"
+    },
+    {
+      "name": "mybatis.configuration.jdbc-type-for-null",
+      "type": "org.apache.ibatis.type.JdbcType",
+      "sourceType": "org.apache.ibatis.session.Configuration"
+    },
+    {
+      "name": "mybatis.configuration.key-generator-names",
+      "type": "java.util.Collection<java.lang.String>",
+      "sourceType": "org.apache.ibatis.session.Configuration"
+    },
+    {
+      "name": "mybatis.configuration.key-generators",
+      "type": "java.util.Collection<org.apache.ibatis.executor.keygen.KeyGenerator>",
+      "sourceType": "org.apache.ibatis.session.Configuration"
+    },
+    {
+      "name": "mybatis.configuration.lazy-load-trigger-methods",
+      "type": "java.util.Set<java.lang.String>",
+      "sourceType": "org.apache.ibatis.session.Configuration"
+    },
+    {
+      "name": "mybatis.configuration.lazy-loading-enabled",
+      "type": "java.lang.Boolean",
+      "sourceType": "org.apache.ibatis.session.Configuration"
+    },
+    {
+      "name": "mybatis.configuration.local-cache-scope",
+      "type": "org.apache.ibatis.session.LocalCacheScope",
+      "sourceType": "org.apache.ibatis.session.Configuration"
+    },
+    {
+      "name": "mybatis.configuration.log-impl",
+      "type": "java.lang.Class<? extends org.apache.ibatis.logging.Log>",
+      "sourceType": "org.apache.ibatis.session.Configuration"
+    },
+    {
+      "name": "mybatis.configuration.log-prefix",
+      "type": "java.lang.String",
+      "sourceType": "org.apache.ibatis.session.Configuration"
+    },
+    {
+      "name": "mybatis.configuration.map-underscore-to-camel-case",
+      "type": "java.lang.Boolean",
+      "sourceType": "org.apache.ibatis.session.Configuration"
+    },
+    {
+      "name": "mybatis.configuration.mapped-statement-names",
+      "type": "java.util.Collection<java.lang.String>",
+      "sourceType": "org.apache.ibatis.session.Configuration"
+    },
+    {
+      "name": "mybatis.configuration.mapped-statements",
+      "type": "java.util.Collection<org.apache.ibatis.mapping.MappedStatement>",
+      "sourceType": "org.apache.ibatis.session.Configuration"
+    },
+    {
+      "name": "mybatis.configuration.multiple-result-sets-enabled",
+      "type": "java.lang.Boolean",
+      "sourceType": "org.apache.ibatis.session.Configuration"
+    },
+    {
+      "name": "mybatis.configuration.object-factory",
+      "type": "org.apache.ibatis.reflection.factory.ObjectFactory",
+      "sourceType": "org.apache.ibatis.session.Configuration"
+    },
+    {
+      "name": "mybatis.configuration.object-wrapper-factory",
+      "type": "org.apache.ibatis.reflection.wrapper.ObjectWrapperFactory",
+      "sourceType": "org.apache.ibatis.session.Configuration"
+    },
+    {
+      "name": "mybatis.configuration.parameter-map-names",
+      "type": "java.util.Collection<java.lang.String>",
+      "sourceType": "org.apache.ibatis.session.Configuration"
+    },
+    {
+      "name": "mybatis.configuration.parameter-maps",
+      "type": "java.util.Collection<org.apache.ibatis.mapping.ParameterMap>",
+      "sourceType": "org.apache.ibatis.session.Configuration"
+    },
+    {
+      "name": "mybatis.configuration.proxy-factory",
+      "type": "org.apache.ibatis.executor.loader.ProxyFactory",
+      "sourceType": "org.apache.ibatis.session.Configuration"
+    },
+    {
+      "name": "mybatis.configuration.reflector-factory",
+      "type": "org.apache.ibatis.reflection.ReflectorFactory",
+      "sourceType": "org.apache.ibatis.session.Configuration"
+    },
+    {
+      "name": "mybatis.configuration.result-map-names",
+      "type": "java.util.Collection<java.lang.String>",
+      "sourceType": "org.apache.ibatis.session.Configuration"
+    },
+    {
+      "name": "mybatis.configuration.result-maps",
+      "type": "java.util.Collection<org.apache.ibatis.mapping.ResultMap>",
+      "sourceType": "org.apache.ibatis.session.Configuration"
+    },
+    {
+      "name": "mybatis.configuration.return-instance-for-empty-row",
+      "type": "java.lang.Boolean",
+      "sourceType": "org.apache.ibatis.session.Configuration"
+    },
+    {
+      "name": "mybatis.configuration.safe-result-handler-enabled",
+      "type": "java.lang.Boolean",
+      "sourceType": "org.apache.ibatis.session.Configuration"
+    },
+    {
+      "name": "mybatis.configuration.safe-row-bounds-enabled",
+      "type": "java.lang.Boolean",
+      "sourceType": "org.apache.ibatis.session.Configuration"
+    },
+    {
+      "name": "mybatis.configuration.sql-fragments",
+      "type": "java.util.Map<java.lang.String,org.apache.ibatis.parsing.XNode>",
+      "sourceType": "org.apache.ibatis.session.Configuration"
+    },
+    {
+      "name": "mybatis.configuration.use-actual-param-name",
+      "type": "java.lang.Boolean",
+      "sourceType": "org.apache.ibatis.session.Configuration"
+    },
+    {
+      "name": "mybatis.configuration.use-column-label",
+      "type": "java.lang.Boolean",
+      "sourceType": "org.apache.ibatis.session.Configuration"
+    },
+    {
+      "name": "mybatis.configuration.use-generated-keys",
+      "type": "java.lang.Boolean",
+      "sourceType": "org.apache.ibatis.session.Configuration"
+    },
+    {
+      "name": "mybatis.configuration.variables",
+      "type": "java.util.Properties",
+      "sourceType": "org.apache.ibatis.session.Configuration"
+    },
+    {
+      "name": "mybatis.configuration.vfs-impl",
+      "type": "java.lang.Class<? extends org.apache.ibatis.io.VFS>",
+      "sourceType": "org.apache.ibatis.session.Configuration"
+    },
+    {
+      "name": "spring.datasource.hikari.allow-pool-suspension",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.zaxxer.hikari.HikariConfig"
+    },
+    {
+      "name": "spring.datasource.hikari.auto-commit",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.zaxxer.hikari.HikariConfig"
+    },
+    {
+      "name": "spring.datasource.hikari.catalog",
+      "type": "java.lang.String",
+      "sourceType": "com.zaxxer.hikari.HikariConfig"
+    },
+    {
+      "name": "spring.datasource.hikari.connection-init-sql",
+      "type": "java.lang.String",
+      "sourceType": "com.zaxxer.hikari.HikariConfig"
+    },
+    {
+      "name": "spring.datasource.hikari.connection-test-query",
+      "type": "java.lang.String",
+      "sourceType": "com.zaxxer.hikari.HikariConfig"
+    },
+    {
+      "name": "spring.datasource.hikari.connection-timeout",
+      "type": "java.lang.Long",
+      "sourceType": "com.zaxxer.hikari.HikariConfig"
+    },
+    {
+      "name": "spring.datasource.hikari.data-source-class-name",
+      "type": "java.lang.String",
+      "sourceType": "com.zaxxer.hikari.HikariConfig"
+    },
+    {
+      "name": "spring.datasource.hikari.data-source-j-n-d-i",
+      "type": "java.lang.String",
+      "sourceType": "com.zaxxer.hikari.HikariConfig"
+    },
+    {
+      "name": "spring.datasource.hikari.data-source-properties",
+      "type": "java.util.Properties",
+      "sourceType": "com.zaxxer.hikari.HikariConfig"
+    },
+    {
+      "name": "spring.datasource.hikari.driver-class-name",
+      "type": "java.lang.String",
+      "sourceType": "com.zaxxer.hikari.HikariConfig"
+    },
+    {
+      "name": "spring.datasource.hikari.health-check-properties",
+      "type": "java.util.Properties",
+      "sourceType": "com.zaxxer.hikari.HikariConfig"
+    },
+    {
+      "name": "spring.datasource.hikari.health-check-registry",
+      "type": "java.lang.Object",
+      "sourceType": "com.zaxxer.hikari.HikariConfig"
+    },
+    {
+      "name": "spring.datasource.hikari.idle-timeout",
+      "type": "java.lang.Long",
+      "sourceType": "com.zaxxer.hikari.HikariConfig"
+    },
+    {
+      "name": "spring.datasource.hikari.initialization-fail-timeout",
+      "type": "java.lang.Long",
+      "sourceType": "com.zaxxer.hikari.HikariConfig"
+    },
+    {
+      "name": "spring.datasource.hikari.isolate-internal-queries",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.zaxxer.hikari.HikariConfig"
+    },
+    {
+      "name": "spring.datasource.hikari.jdbc-url",
+      "type": "java.lang.String",
+      "sourceType": "com.zaxxer.hikari.HikariConfig"
+    },
+    {
+      "name": "spring.datasource.hikari.leak-detection-threshold",
+      "type": "java.lang.Long",
+      "sourceType": "com.zaxxer.hikari.HikariConfig"
+    },
+    {
+      "name": "spring.datasource.hikari.max-lifetime",
+      "type": "java.lang.Long",
+      "sourceType": "com.zaxxer.hikari.HikariConfig"
+    },
+    {
+      "name": "spring.datasource.hikari.maximum-pool-size",
+      "type": "java.lang.Integer",
+      "sourceType": "com.zaxxer.hikari.HikariConfig"
+    },
+    {
+      "name": "spring.datasource.hikari.metric-registry",
+      "type": "java.lang.Object",
+      "sourceType": "com.zaxxer.hikari.HikariConfig"
+    },
+    {
+      "name": "spring.datasource.hikari.metrics-tracker-factory",
+      "type": "com.zaxxer.hikari.metrics.MetricsTrackerFactory",
+      "sourceType": "com.zaxxer.hikari.HikariConfig"
+    },
+    {
+      "name": "spring.datasource.hikari.minimum-idle",
+      "type": "java.lang.Integer",
+      "sourceType": "com.zaxxer.hikari.HikariConfig"
+    },
+    {
+      "name": "spring.datasource.hikari.password",
+      "type": "java.lang.String",
+      "sourceType": "com.zaxxer.hikari.HikariConfig"
+    },
+    {
+      "name": "spring.datasource.hikari.pool-name",
+      "type": "java.lang.String",
+      "sourceType": "com.zaxxer.hikari.HikariConfig"
+    },
+    {
+      "name": "spring.datasource.hikari.read-only",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.zaxxer.hikari.HikariConfig"
+    },
+    {
+      "name": "spring.datasource.hikari.register-mbeans",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.zaxxer.hikari.HikariConfig"
+    },
+    {
+      "name": "spring.datasource.hikari.scheduled-executor",
+      "type": "java.util.concurrent.ScheduledExecutorService",
+      "sourceType": "com.zaxxer.hikari.HikariConfig"
+    },
+    {
+      "name": "spring.datasource.hikari.schema",
+      "type": "java.lang.String",
+      "sourceType": "com.zaxxer.hikari.HikariConfig"
+    },
+    {
+      "name": "spring.datasource.hikari.transaction-isolation",
+      "type": "java.lang.String",
+      "sourceType": "com.zaxxer.hikari.HikariConfig"
+    },
+    {
+      "name": "spring.datasource.hikari.username",
+      "type": "java.lang.String",
+      "sourceType": "com.zaxxer.hikari.HikariConfig"
+    },
+    {
+      "name": "spring.datasource.hikari.validation-timeout",
+      "type": "java.lang.Long",
+      "sourceType": "com.zaxxer.hikari.HikariConfig"
+    }
+  ],
+  "hints": []
+}
