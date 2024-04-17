@@ -1,13 +1,15 @@
 package com.sky.spring;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import java.time.LocalDateTime;
 
+@Service
 public class MemberRegisterService {
-	private MemberDao memberDao;
 
-	public MemberRegisterService(MemberDao memberDao) {
-		this.memberDao = memberDao;
-	}
+	@Autowired
+	private MemberDao memberDao;
 
 	public Long regist(RegisterRequest req) {
 		Member member = memberDao.selectByEmail(req.getEmail());
