@@ -58,7 +58,7 @@ public class MemberDao {
 				pstmt.setString(2, member.getPassword());
 				pstmt.setString(3, member.getName());
 				pstmt.setTimestamp(4,
-						Timestamp.valueOf(member.getRegisterDateTime()));
+						Timestamp.valueOf(member.getRegdate()));
 				// 생성한 PreparedStatement 객체 리턴
 				return pstmt;
 			}
