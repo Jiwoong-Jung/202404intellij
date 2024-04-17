@@ -1,7 +1,6 @@
 package com.sky.controller;
 
 import com.sky.repository.IMemberDao;
-import com.sky.repository.MemberDTO;
 import com.sky.spring.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
