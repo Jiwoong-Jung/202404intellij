@@ -33,12 +33,4 @@ public class AnswerEntity {
         this.age = age;
         this.name = name;
     }
-
-//    public static Answer toEntity(com.sky._sb0411.problem.Answer dto) {
-//        return Answer.builder()
-//                .dataList(dto.getDataList())
-//                .age(dto.getAge())
-//                .name(dto.getName())
-//                .build();
-//    }
 }

@@ -41,8 +41,9 @@ public class SurveyController {
 
 	@PostMapping
 	public String submit(AnswerEntity answerEntity) {
-		log.info("{}", answerEntity);
+//		log.info("{}", answerEntity);
 		answerRepository.save(answerEntity);
+		log.info("{}", answerRepository.findAll());
 		return "survey/submitted";
 	}
 
