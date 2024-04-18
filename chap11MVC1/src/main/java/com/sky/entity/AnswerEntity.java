@@ -1,12 +1,14 @@
 package com.sky.entity;
 
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.List;
 
+@Data
 @Entity
 @NoArgsConstructor
 @ToString
