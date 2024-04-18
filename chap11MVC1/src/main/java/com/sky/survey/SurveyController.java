@@ -48,7 +48,11 @@ public class SurveyController {
 	public String submit(AnswerEntity answerEntity) {
 //		log.info("{}", answerEntity);
 		answerRepository.save(answerEntity);
-		log.info("{}", answerRepository.findAll());
+//		log.info("{}", answerRepository.findAll());
+		List<AnswerEntity> list = answerRepository.findAll();
+		list.forEach(s->{
+			log.info("{}", s);
+		});
 		return "survey/submitted";
 	}
 
