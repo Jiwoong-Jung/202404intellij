@@ -1,10 +1,7 @@
 package com.sky.survey;
 
 import com.sky.entity.AnswerEntity;
-import com.sky.repository.AnswerData;
-import com.sky.repository.AnswerRepository;
-import com.sky.repository.IAnswerDao;
-import com.sky.repository.QuestionRepository;
+import com.sky.repository.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -64,6 +61,11 @@ public class SurveyController {
 	@ResponseBody
 	public List<AnswerData> select() {
 		return iAnswerDao.getByAnswerId(1L);
+	}
+	@GetMapping("/selectAll")
+	@ResponseBody
+	public List<AnswerDto> selectAll() {
+		return iAnswerDao.getAll();
 	}
 
 }
