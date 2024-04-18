@@ -1,14 +1,12 @@
 package com.sky.spring;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor
+@ToString
 public class Member {
     private Long id;
     private String email;

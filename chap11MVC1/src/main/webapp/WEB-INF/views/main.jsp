@@ -8,5 +8,6 @@
 <body>
     <p>환영합니다.</p>
     <p><a href="<c:url value="/register/step1" />">[회원 가입하기]</a>
+    <p><a href="<c:url value="/survey" />">[설문조사]</a>
 </body>
 </html>

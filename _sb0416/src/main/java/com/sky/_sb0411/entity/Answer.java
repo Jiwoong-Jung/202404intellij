@@ -7,6 +7,7 @@ import java.util.List;
 
 @Entity
 @NoArgsConstructor
+@ToString
 public class Answer {
 
     @Id
@@ -14,6 +15,7 @@ public class Answer {
     private Long id;
 
     @ElementCollection
+    @OrderColumn
     private List<String> dataList;
     private int age;
     private String name;

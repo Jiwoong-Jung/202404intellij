@@ -1,16 +1,13 @@
 package com.sky._sb0411.problem;
 
+import com.sky._sb0411.repostory.AnswerDao;
 import com.sky._sb0411.repostory.AnswerRepository;
 import com.sky._sb0411.repostory.QuestionRepository;
-import com.sky._sb0411.survey.Question;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,6 +23,9 @@ public class ProblemController {
 
     @Autowired
     AnswerRepository answerRepository;
+
+    @Autowired
+    AnswerDao answerDao;
 
 
     @GetMapping
@@ -54,6 +54,26 @@ public class ProblemController {
         log.info("응답자료 {}", ans);
         com.sky._sb0411.entity.Answer entity = com.sky._sb0411.entity.Answer.toEntity(ans);
         answerRepository.save(entity);
+//        log.info("{}", answerRepository.findAll());
         return "problem/submitted";
     }
+
+    @GetMapping("/count")
+    @ResponseBody
+    public int count() {
+        return answerDao.countAnswer();
+    }
+
+    @GetMapping("/select")
+    @ResponseBody
+    public List<AnswerDataList> select() {
+        return answerDao.getByAnswerId(1);
+    }
+
+    @GetMapping("/selectAll")
+    @ResponseBody
+    public List<AnswerDTO> selectAll() {
+        return answerDao.getAll();
+    }
+
 }
