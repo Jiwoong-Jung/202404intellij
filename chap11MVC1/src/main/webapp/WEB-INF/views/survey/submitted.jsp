@@ -8,11 +8,11 @@
 <body>
     <p>응답 내용:</p>
     <ul>
-        <c:forEach var="data" items="${ansData.dataList}" varStatus="sta">
+        <c:forEach var="data" items="${answerEntity.dataList}" varStatus="sta">
             <li>${sta.index+1}번 응답: ${data}</li>
         </c:forEach>
     </ul>
-    <p>응답자 위치: ${ansData.name}</p>
-    <p>응답자 나이: ${ansData.age}</p>
+    <p>응답자 이름: ${answerEntity.name}</p>
+    <p>응답자 나이: ${answerEntity.age}</p>
 </body>
 </html>
