@@ -17,6 +17,7 @@ public class Answer {
     @ElementCollection
     @OrderColumn
     private List<String> dataList;
+
     private int age;
     private String name;
 
