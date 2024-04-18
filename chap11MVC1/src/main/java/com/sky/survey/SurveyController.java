@@ -1,7 +1,9 @@
 package com.sky.survey;
 
 import com.sky.entity.AnswerEntity;
+import com.sky.repository.AnswerData;
 import com.sky.repository.AnswerRepository;
+import com.sky.repository.IAnswerDao;
 import com.sky.repository.QuestionRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/survey")
@@ -21,6 +26,9 @@ public class SurveyController {
 
 	@Autowired
 	AnswerRepository answerRepository;
+
+	@Autowired
+	IAnswerDao iAnswerDao;
 
 	@GetMapping
 	public String form(Model model) {
@@ -45,6 +53,17 @@ public class SurveyController {
 		answerRepository.save(answerEntity);
 		log.info("{}", answerRepository.findAll());
 		return "survey/submitted";
+	}
+
+	@GetMapping("/count")
+	@ResponseBody
+	public int count() {
+		return iAnswerDao.countAnswer();
+	}
+	@GetMapping("/select")
+	@ResponseBody
+	public List<AnswerData> select() {
+		return iAnswerDao.getByAnswerId(1L);
 	}
 
 }
