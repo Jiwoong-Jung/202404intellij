@@ -13,11 +13,11 @@ public interface AnswerDao {
     int countAnswer();
 
     @Select("SELECT * FROM answer")
-    @Results(id="AnswerMap", value={
+    @Results({
             @Result(property="id", column="id"),
             @Result(property="age", column="age"),
             @Result(property="name", column="name"),
-            @Result(property="dataList", javaType = List.class, column="id", many=@Many(select="com.sky._sb0411.repostory.getByAnswerId"))
+            @Result(property="dataList", javaType = List.class, column="id", many=@Many(select="getByAnswerId"))
     })
     List<AnswerDTO> getAll();
 
@@ -27,5 +27,5 @@ public interface AnswerDao {
             @Result(property="dataList", column="data_list"),
             @Result(property="dataListOrder", column="data_list_order")
     })
-    List<AnswerDataList> getByAnswerId(@Param("id") int answer_id);
+    List<AnswerDataList> getByAnswerId(@Param("id") Long id);
 }

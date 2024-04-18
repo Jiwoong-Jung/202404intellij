@@ -67,7 +67,7 @@ public class ProblemController {
     @GetMapping("/select")
     @ResponseBody
     public List<AnswerDataList> select() {
-        return answerDao.getByAnswerId(1);
+        return answerDao.getByAnswerId(1L);
     }
 
     @GetMapping("/selectAll")
