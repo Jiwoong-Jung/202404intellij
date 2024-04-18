@@ -1,5 +1,6 @@
 package com.sky.entity;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -7,8 +8,8 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@NoArgsConstructor
 @Getter
+@NoArgsConstructor
 @Table(name = "question")
 public class QuestionEntity {
 
@@ -25,6 +26,7 @@ public class QuestionEntity {
 		return options != null && !options.isEmpty();
 	}
 
+	@Builder
 	public QuestionEntity(String title, List<String> options) {
 		this.title = title;
 		this.options = options;
