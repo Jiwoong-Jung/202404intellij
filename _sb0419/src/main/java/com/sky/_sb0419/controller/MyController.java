@@ -38,4 +38,11 @@ public class MyController {
         return "view/list";
     }
 
+    @GetMapping("/detail")
+    public String detail(Long seq, Model model) {
+        Notice notice = detailService.detail(seq);
+        model.addAttribute("notice", notice);
+        return "view/detail";
+    }
+
 }
