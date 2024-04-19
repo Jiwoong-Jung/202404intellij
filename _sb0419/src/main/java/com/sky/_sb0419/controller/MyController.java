@@ -6,6 +6,10 @@ import com.sky._sb0419.service.DetailService;
 import com.sky._sb0419.service.NoticeService;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,9 +29,12 @@ public class MyController {
     }
 
     @GetMapping("/page2")
-    public String listAction(Model model) {
-        List<Notice> list = noticeRepository.findAll();
-        model.addAttribute("list", list);
+    public String listAction(Model model, @PageableDefault(page = 0, size = 10) Pageable pageable) {
+        List<Notice> list = noticeRepository.findAllByOrderBySeqDesc();
+        final int start = (int) pageable.getOffset();
+        final int end = Math.min((start + pageable.getPageSize()), list.size());
+        final Page<Notice> page = new PageImpl<>(list.subList(start, end), pageable, list.size());
+        model.addAttribute("list", page);
         return "view/list";
     }
 
