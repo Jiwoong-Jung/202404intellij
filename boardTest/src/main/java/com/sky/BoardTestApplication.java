@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import javax.annotation.PostConstruct;
+import java.util.stream.IntStream;
 
 @SpringBootApplication
 @RequiredArgsConstructor
@@ -19,9 +20,14 @@ public class BoardTestApplication {
     }
     @PostConstruct
     public void init() {
-        Notice notice = Notice.builder()
-                .title("제목3").content("내용3").build();
+        IntStream.rangeClosed(1, 100).forEach(i->{
+            Notice notice = Notice.builder()
+                    .title("제목"+i)
+                    .content("내용"+i)
+                    .build();
+            noticeRepository.insertNotice(notice);
+        });
 //        noticeRepository.saveAndFlush(notice);
-        noticeRepository.insertNotice(notice);
+
     }
 }

@@ -9,6 +9,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
+import java.time.LocalDateTime;
+import java.util.Optional;
 import java.util.stream.IntStream;
 
 @SpringBootTest
@@ -37,6 +39,19 @@ class Sb0419ApplicationTests {
         System.out.println("---------------------");
         System.out.println(noticeRepository.selectCount());
         System.out.println("---------------------");
+    }
+
+    @Test
+    public void testFindById() {
+        Notice notice = Notice.builder()
+                .title("제목")
+                .content("내용")
+                .regdate(LocalDateTime.now())
+                .build();
+        noticeRepository.save(notice);
+        Notice notice1 = noticeRepository.findById(2L).orElse(null);
+        System.out.println("+++++++++++++++++");
+        System.out.println(notice1);
     }
 
 }
