@@ -15,7 +15,7 @@
         <tr>
           <th scope="col">Seq</th>
           <th scope="col">Title</th>
-          <th scope="col">Writer</th>
+          <th scope="col">Content</th>
           <th scope="col">RegData</th>
         </tr>
         </thead>
@@ -120,7 +120,7 @@
 
   function viewModal(data) {
     let actionForm = $("form");
-    $("#seq").val(data);
+    // $("#seq").val(data);
 
     const modal = new bootstrap.Modal(document.querySelector(".modal"));
     modal.show();

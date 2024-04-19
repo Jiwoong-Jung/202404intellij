@@ -13,6 +13,8 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -43,6 +45,12 @@ public class MyController {
         Notice notice = detailService.detail(seq);
         model.addAttribute("notice", notice);
         return "view/detail";
+    }
+
+    @PostMapping("/addNotice")
+    @ResponseBody
+    public Notice addNotice(Notice notice) {
+        return noticeService.saveNotice(notice);
     }
 
 }
