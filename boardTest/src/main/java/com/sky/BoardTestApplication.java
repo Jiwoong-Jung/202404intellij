@@ -19,7 +19,7 @@ public class BoardTestApplication {
     }
     @PostConstruct
     public void init() {
-        Notice notice = Notice.builder().seq(1L)
+        Notice notice = Notice.builder()
                 .title("제목3").content("내용3").build();
 //        noticeRepository.saveAndFlush(notice);
         noticeRepository.insertNotice(notice);
