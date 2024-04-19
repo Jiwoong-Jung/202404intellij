@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather App</title>
+</head>
+<body>
+<h1>Weather App</h1>
+<img id="weatherImage" src="" alt="Weather Image">
+<script>
+    fetch('http://localhost:8080/weather')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('weatherImage').src = data.img;
+        })
+        .catch(error => console.error('Error:', error));
+</script>
+</body>
+</html>
