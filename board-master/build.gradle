@@ -1,0 +1,46 @@
+plugins {
+	id 'java'
+	id 'war'
+	id 'org.springframework.boot' version '2.7.15'
+	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+}
+
+group = 'com.study'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '11'
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compileOnly 'org.projectlombok:lombok'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	runtimeOnly 'com.mysql:mysql-connector-j'
+	annotationProcessor 'org.projectlombok:lombok'
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'javax.servlet:jstl'
+    implementation "org.apache.tomcat.embed:tomcat-embed-jasper"
+	implementation "org.springframework.boot:spring-boot-starter-jdbc"
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0'
+
+	implementation('org.slf4j:jcl-over-slf4j')
+	implementation('ch.qos.logback:logback-classic')
+	implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4:1.16'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

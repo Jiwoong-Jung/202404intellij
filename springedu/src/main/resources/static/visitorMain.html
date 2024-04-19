@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="css/visitor.css">
+</head>
+<body>
+<h1>방명록</h1>
+<hr>
+<a href = "/vlist"><button>방명록 리스트 보기</button></a>
+<hr>
+<a href = "/visitorForm.html"><button>방명록 작성</button></a>
+<hr>
+<form method ="GET" action = "/vsearch">
+<input type ="text" name = "key">
+<input type = "submit" value = "방명록 검색">
+</form>
+<script>
+window.onload = function (e) {
+    let xhr = new XMLHttpRequest();
+    xhr.onload = function() {
+    	let jsonobj = JSON.parse(xhr.responseText);
+    	let imgsrc = "/"+jsonobj.img;
+    	document.body.style.backgroundImage =  "url("+imgsrc+")";
+    	document.body.style.backgroundRepeat = "no-repeat";
+    	document.body.style.backgroundAttachment = "fixed";
+    	document.body.style.backgroundPosition = "center";
+    };
+    xhr.open("GET", "/weather", true);
+    xhr.send();    
+};
+</script>
+</body>
+</html>
+
+
+

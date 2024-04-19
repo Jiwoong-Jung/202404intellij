@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/basic.html}">
+
+<div layout:fragment="content">
+  <div class="card-body">
+    <div class="input-group mb-3">
+      <span class="input-group-text">번호</span>
+      <input type="text" class="form-control" th:value="${notice.seq}" readonly />
+    </div>
+    <div class="input-group mb-3">
+      <span class="input-group-text">제목</span>
+      <input type="text" class="form-control" th:value="${notice.title}" readonly />
+    </div>
+    <div class="input-group mb-3">
+      <span class="input-group-text">내용</span>
+      <textarea type="text" class="form-control col-sm-5" row="5" readonly>[[${notice.content}]]</textarea>
+    </div>
+  </div>
+
+
+</div>
+
+<script layout:fragment="script" th:inline="javascript">
+  console.log("script.....................");
+  function viewModal() {
+    let actionForm = $("form");
+    const modal = new bootstrap.Modal(document.querySelector(".modal"));
+    modal.show();
+    $(".savBtn").click(function () {
+      //var params = jQuery("#f1").serialize()
+      $.ajax({
+        type: "Post",
+        url: "/addNotice?"+actionForm.serialize(),
+        dataType: "text",
+        contentType: "application/x-www-form-urlencoded;charset=UTF-8",
+        error: function () {
+          console.log('통신실패!!');
+        },
+        success: function (data) {
+          console.log("통신데이터 값 : " + data);
+          $("#reply").html('<p>' + data + '</p>');
+          modal.hide();
+        }
+      });
+    });
+  }
+</script>

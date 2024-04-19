@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/basic.html}">
+
+<div layout:fragment="content">
+  <div class="card">
+    <div class="card-header">
+      Board List
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Borad List</h5>
+      <table class="table">
+        <thead>
+        <tr>
+          <th scope="col">Seq</th>
+          <th scope="col">Title</th>
+          <th scope="col">Writer</th>
+          <th scope="col">RegData</th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr th:each="notice : ${list}">
+            <th scope="row"><a th:href="@{/detail(seq=${notice.seq})}">[[${notice.seq}]]</a></th>
+            <td>[[${notice.title}]]</td>
+            <td>[[${notice.content}]]</td>
+            <td>2023-03-03</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 페이징 -->
+  <div th:if="${!list.isEmpty()}">
+    <!-- 전역 변수 선언 -->
+    <nav
+            th:with="pageNumber = ${list.pageable.pageNumber}, pageSize = ${list.pageable.pageSize},totalPages = ${list.totalPages},startPage = ${T(java.lang.Math).floor(pageNumber / pageSize) * pageSize + 1},tempEndPage = ${startPage + pageSize - 1},endPage = (${tempEndPage < totalPages ? tempEndPage : totalPages})"
+            aria-label="Page navigation"
+    >
+      <ul class="pagination">
+        <!-- 처음으로 이동 -->
+        <li th:classappend="${pageNumber < pageSize} ? 'disabled'" class="page-item">
+          <a class="page-link" th:href="@{/page2(page=0)}">
+            <span>&laquo;</span>
+            <span class="sr-only">First</span>
+          </a>
+        </li>
+
+        <!-- 이전으로 이동 -->
+        <li th:classappend="${list.first} ? 'disabled'" class="page-item">
+          <a class="page-link" th:href="${list.first} ? '#' : @{/page2(page=${pageNumber - 1})}" aria-label="Previous">
+            <span aria-hidden="true">&lt;</span>
+            <span class="sr-only">Previous</span>
+          </a>
+        </li>
+
+        <!-- 특정 페이지로 이동 -->
+        <li th:each="page: ${#numbers.sequence(startPage, endPage)}" th:classappend="${page == pageNumber + 1} ? 'active'" class="page-item">
+          <a th:text="${page}" class="page-link" th:href="@{/page2(page=${page - 1})}"></a>
+        </li>
+
+        <!-- 다음으로 이동 -->
+        <li th:classappend="${list.last} ? 'disabled'" class="page-item">
+          <a class="page-link" th:href="${list.last} ? '#' : @{/page2(page=${pageNumber + 1})}" aria-label="Next">
+            <span aria-hidden="true">&gt;</span>
+            <span class="sr-only">Next</span>
+          </a>
+        </li>
+
+        <!-- 마지막으로 이동 -->
+        <li th:classappend=" ${T(java.lang.Math).floor(totalPages / pageSize) * pageSize - 1 <= startPage} ? 'disabled'" class="page-item">
+          <a class="page-link" th:href="@{/page2(page=${totalPages - 1})}">
+            <span>&raquo;</span>
+            <span class="sr-only">Last</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div> <!-- /container -->
+
+  <div class="modal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modal title</h5>
+          <button type="button" class="btn-close"
+                  data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form id="f1">
+            <input type="hidden" name="seq" value="" id="seq"/>
+            <input type="text" name="title" />
+            <input type="text" name="content" />
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-secondary"
+                  data-bs-dismiss="modal">Close</button>
+          <button type="button"
+                  class="btn-primary savBtn">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+<script layout:fragment="script" th:inline="javascript">
+
+  function viewModal(data, vm) {
+    let actionForm = $("form");
+    $("#seq").val(data);
+
+    const modal = new bootstrap.Modal(document.querySelector(".modal"));
+    modal.show();
+    $(".savBtn").click(function(){
+      //var params = jQuery("#f1").serialize()
+      $.ajax({
+        type: "Post",
+        url: "/addNotice?"+actionForm.serialize(),
+        dataType: "text",
+        contentType : "application/x-www-form-urlencoded;charset=UTF-8",
+        error: function() {
+          console.log('통신실패!!');
+        },
+        success: function(data) {
+          console.log("통신데이터 값 : " + data);
+          vm.after('<p>'+data+'</p>');
+        }
+      });
+      // let seqInfo = $("input[name='seq']");;
+      // let titleInfo = $("input[name='title']");
+      // let contentInfo = $("input[name='content']");
+      // actionForm.append(seqInfo);
+      // actionForm.append(titleInfo);
+      // actionForm.append(contentInfo);
+      // actionForm.attr("action", "/addNotice").attr("method", "post");
+      // console.log(actionForm.html());
+      // actionForm.submit();
+    });
+    //document.querySelector(".savBtn").addEventListener("click", function(e) {
+
+    // });
+  }
+  console.log("script.....................");
+
+</script>
