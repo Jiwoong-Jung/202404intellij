@@ -11,8 +11,9 @@ import org.springframework.stereotype.Service;
 public class NoticeServiceImpl implements NoticeService{
     private final NoticeRepository noticeRepository;
     @Override
-    public void saveNotice(Notice notice) {
+    public Notice saveNotice(Notice notice) {
 //        Notice notice1 = noticeRepository.save(notice);
         noticeRepository.insertNotice(notice);
+        return notice;
     }
 }

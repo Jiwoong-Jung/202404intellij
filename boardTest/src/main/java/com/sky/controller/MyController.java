@@ -52,7 +52,7 @@ public class MyController {
     @PostMapping("/addNotice")
     @ResponseBody
     public Notice addNotice(Notice notice) {
-        return noticeService.saveReply(notice);
+        return noticeService.saveNotice(notice);
     }
 
 }
