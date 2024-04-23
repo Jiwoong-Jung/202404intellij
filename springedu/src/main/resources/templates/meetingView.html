@@ -61,70 +61,124 @@
     <hr>
 	<button onclick="location.href='/meeting'">[[${ button }]]</button>
 </th:block>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script>
 function displayDiv(type) {
-	if(type == 1) {
-		document.getElementById("search").style.display='none';
-		document.getElementById("write").style.display='block';
-		document.getElementById("divT").textContent="미팅정보 작성";
-		document.querySelector("#write [type=submit]").value="등록";		
-	} else if(type == 2) {
-		document.getElementById("write").style.display='none';
-		document.getElementById("search").style.display='block';
-	}	
+    if(type == 1) {
+        $("#search").hide();
+        $("#write").show();
+        $("#divT").text("미팅정보 작성");
+        $("#write [type=submit]").val("등록");
+    } else if(type == 2) {
+        $("#write").hide();
+        $("#search").show();
+    }
+	// if(type == 1) {
+	// 	document.getElementById("search").style.display='none';
+	// 	document.getElementById("write").style.display='block';
+	// 	document.getElementById("divT").textContent="미팅정보 작성";
+	// 	document.querySelector("#write [type=submit]").value="등록";
+	// } else if(type == 2) {
+	// 	document.getElementById("write").style.display='none';
+	// 	document.getElementById("search").style.display='block';
+	// }
 }
 function displayUpdateForm(cv) {
-    var doms = document.getElementsByClassName(cv);
-    document.getElementById("search").style.display='none';
-	document.getElementById("write").style.display='block';	
-	document.getElementById("m_name").value = 
-		                                  doms[0].textContent;
-	document.getElementById("m_title").value = 
-		                                  doms[1].textContent;
-	var str = doms[2].textContent;
-	var ary = str.split(/\D+/g)
-	var meeting_dt = ary[0]+"-"+ary[1]+"-"+ary[2]+
-	                          "T"+ary[3]+":"+ary[4];
-	document.getElementById("m_dt").value = meeting_dt;
-	document.getElementById("divT").textContent="미팅정보 수정";
-	document.querySelector("#write [type=submit]").value="수정";
-	document.querySelector("#write [type=hidden]").value=cv;
-	document.querySelector("#write form").action="/meeting/update";
+    var doms = $("." + cv);
+    $("#search").hide();
+    $("#write").show();
+    $("#m_name").val(doms.eq(0).text());
+    $("#m_title").val(doms.eq(1).text());
+    var str = doms.eq(2).text();
+    var ary = str.split(/\D+/g)
+    var meeting_dt = ary[0]+"-"+ary[1]+"-"+ary[2]+"T"+ary[3]+":"+ary[4];
+    $("#m_dt").val(meeting_dt);
+    $("#divT").text("미팅정보 수정");
+    $("#write [type=submit]").val("수정");
+    $("#write [type=hidden]").val(cv);
+    $("#write form").attr("action", "/meeting/update");
+    // var doms = document.getElementsByClassName(cv);
+    // document.getElementById("search").style.display='none';
+	// document.getElementById("write").style.display='block';
+	// document.getElementById("m_name").value =
+	// 	                                  doms[0].textContent;
+	// document.getElementById("m_title").value =
+	// 	                                  doms[1].textContent;
+	// var str = doms[2].textContent;
+	// var ary = str.split(/\D+/g)
+	// var meeting_dt = ary[0]+"-"+ary[1]+"-"+ary[2]+
+	//                           "T"+ary[3]+":"+ary[4];
+	// document.getElementById("m_dt").value = meeting_dt;
+	// document.getElementById("divT").textContent="미팅정보 수정";
+	// document.querySelector("#write [type=submit]").value="수정";
+	// document.querySelector("#write [type=hidden]").value=cv;
+	// document.querySelector("#write form").action="/meeting/update";
 }
 function displayReply(id) {
-	var xhr = new XMLHttpRequest();
-	xhr.onload = function () {
-		if(xhr.status == 200) {			
-			let jsondoms = JSON.parse(xhr.responseText);
-			let replyContent = "";			
-			for(let i in jsondoms) {	
-				i = Number(i);
-				replyContent += "[댓글"+(i+1)+"] 작성자명 : "+jsondoms[i].name+", 내용 : "+jsondoms[i].content+"\n"; 
-			}
-			if (!replyContent)
-				replyContent = "아직 댓글이 없네요!!";
-			window.alert(replyContent);
-		}
-	}
-	xhr.open("GET", "/meeting/lreply?refid="+id, true);
-	xhr.send();		
+    $.ajax({
+        url: "/meeting/lreply?refid=" + id,
+        type: "GET",
+        success: function(response) {
+
+            let jsondoms = JSON.parse(response);
+            console.log(jsondoms);
+            let replyContent = "";
+            for(let i in jsondoms) {
+                i = Number(i);
+                replyContent += "[댓글"+(i+1)+"] 작성자명 : "+jsondoms[i].name+", 내용 : "+jsondoms[i].content+"\n";
+            }
+            if (!replyContent)
+                replyContent = "아직 댓글이 없네요!!";
+            window.alert(replyContent);
+        }
+    });
+
+	// var xhr = new XMLHttpRequest();
+	// xhr.onload = function () {
+	// 	if(xhr.status == 200) {
+	// 		let jsondoms = JSON.parse(xhr.responseText);
+	// 		let replyContent = "";
+	// 		for(let i in jsondoms) {
+	// 			i = Number(i);
+	// 			replyContent += "[댓글"+(i+1)+"] 작성자명 : "+jsondoms[i].name+", 내용 : "+jsondoms[i].content+"\n";
+	// 		}
+	// 		if (!replyContent)
+	// 			replyContent = "아직 댓글이 없네요!!";
+	// 		window.alert(replyContent);
+	// 	}
+	// }
+	// xhr.open("GET", "/meeting/lreply?refid="+id, true);
+	// xhr.send();
 }
 function insertReply(id) {
 	let name = window.prompt("댓글 작성자의 성명을 입력하세요..");
 	let content = window.prompt("댓글 내용을 입력하세요..");
-	let query = "name="+name+"&content="+content+"&refid="+id;	
-	var xhr = new XMLHttpRequest();
-	xhr.onload = function () {
-		if(xhr.status == 200) {				
-			let jsondom = JSON.parse(xhr.responseText);
-			if (jsondom.result == true)
-				window.alert("댓글 작성이 완료되었습니다.");
-			else
-				window.alert("댓글 작성에 실패했습니다.");
-		}
-	};
-	xhr.open("GET", "/meeting/ireply?"+query, true);
-	xhr.send();		
+	let query = "name="+name+"&content="+content+"&refid="+id;
+
+    $.ajax({
+        url: "/meeting/ireply?" + query,
+        type: "GET",
+        success: function(response) {
+            let jsondom = JSON.parse(response);
+            if (jsondom.result == true)
+                window.alert("댓글 작성이 완료되었습니다.");
+            else
+                window.alert("댓글 작성에 실패했습니다.");
+        }
+    });
+
+	// var xhr = new XMLHttpRequest();
+	// xhr.onload = function () {
+	// 	if(xhr.status == 200) {
+	// 		let jsondom = JSON.parse(xhr.responseText);
+	// 		if (jsondom.result == true)
+	// 			window.alert("댓글 작성이 완료되었습니다.");
+	// 		else
+	// 			window.alert("댓글 작성에 실패했습니다.");
+	// 	}
+	// };
+	// xhr.open("GET", "/meeting/ireply?"+query, true);
+	// xhr.send();
 }
 </script>
 <div id="write"  style="display:none">
