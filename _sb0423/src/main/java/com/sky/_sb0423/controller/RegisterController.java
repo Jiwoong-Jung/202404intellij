@@ -7,6 +7,7 @@ import com.sky._sb0423.spring.RegisterRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -40,7 +41,11 @@ public class RegisterController {
 	}
 
 	@PostMapping("/step3")
-	public String handleStep3(RegisterRequest regReq) {
+	public String handleStep3(RegisterRequest regReq, Errors errors) {
+		new RegisterRequestValidator().validate(regReq, errors);
+		if (errors.hasErrors()) {
+			return "register/step2";
+		}
 		try {
 			memberRegisterService.regist(regReq);
 			return "register/step3";
