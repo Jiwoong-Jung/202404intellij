@@ -19,16 +19,19 @@
     <p>
         <label>이름:<br>
         <form:input path="name" />
+        <form:errors path="name" />
         </label>
     </p>
     <p>
         <label>비밀번호:<br>
         <form:password path="password" />
+        <form:errors path="password" />
         </label>
     </p>
     <p>
         <label>비밀번호 확인:<br>
         <form:password path="confirmPassword" />
+        <form:errors path="confirmPassword" />
         </label>
     </p>
     <input type="submit" value="가입 완료">

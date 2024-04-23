@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -42,7 +43,7 @@ public class RegisterController {
 
 	@PostMapping("/step3")
 	public String handleStep3(RegisterRequest regReq, Errors errors) {
-		new RegisterRequestValidator().validate(regReq, errors);
+//		new RegisterRequestValidator().validate(regReq, errors);
 		if (errors.hasErrors()) {
 			return "register/step2";
 		}
@@ -51,6 +52,7 @@ public class RegisterController {
 			return "register/step3";
 		} catch (DuplicateMemberException ex) {
 			System.out.println("DuplicateMemberException 발생!!!");
+			errors.rejectValue("email", "duplicate");
 			return "register/step2";
 		}
 	}
@@ -69,6 +71,11 @@ public class RegisterController {
 	@ModelAttribute("value2")
 	public String case2() {
 		return "반갑습니다.";
+	}
+
+	@InitBinder
+	protected void initBinder(WebDataBinder binder) {
+		binder.setValidator(new RegisterRequestValidator());
 	}
 
 }
