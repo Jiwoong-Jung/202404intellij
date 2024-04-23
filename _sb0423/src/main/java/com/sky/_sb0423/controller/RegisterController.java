@@ -11,6 +11,8 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @Controller
 @RequestMapping("/register")
 public class RegisterController {
@@ -42,7 +44,7 @@ public class RegisterController {
 	}
 
 	@PostMapping("/step3")
-	public String handleStep3(RegisterRequest regReq, Errors errors) {
+	public String handleStep3(@Valid RegisterRequest regReq, Errors errors) {
 //		new RegisterRequestValidator().validate(regReq, errors);
 		if (errors.hasErrors()) {
 			return "register/step2";
