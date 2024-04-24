@@ -4,6 +4,7 @@
 <html>
 <head>
     <title>메인</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
     <p>환영합니다.</p>

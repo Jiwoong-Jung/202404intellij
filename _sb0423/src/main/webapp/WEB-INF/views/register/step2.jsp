@@ -5,6 +5,7 @@
 <html>
 <head>
     <title>회원가입</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
     <h2>회원 정보 입력</h2>

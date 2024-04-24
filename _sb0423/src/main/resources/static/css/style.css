@@ -1,0 +1,31 @@
+
+@font-face {
+    font-family: 'OTWelcomeRA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/OTWelcomeRA.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+* {
+    font-family: 'OTWelcomeRA';
+}
+td{
+    border-bottom : 1px dotted pink;
+    padding-left : 20px;
+}
+tr:hover{
+    background-color : lightgray;
+    font-weight : bold;
+}
+td:nth-child(2){
+    width : 300px;
+}
+input, textarea {
+    padding : 5px;
+    border-radius : 5px;
+}
+div {
+    margin-top : 20px;
+}
+button {
+    padding-top : 5px;
+}

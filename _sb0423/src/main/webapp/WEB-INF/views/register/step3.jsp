@@ -4,6 +4,7 @@
 <html>
 <head>
     <title>회원가입</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
     <p><strong>${registerRequest.name}님</strong>

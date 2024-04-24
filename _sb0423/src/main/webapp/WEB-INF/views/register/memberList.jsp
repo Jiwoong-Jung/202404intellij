@@ -3,6 +3,7 @@
 <html>
 <head>
     <title>회원목록</title>
+    <link rel="stylesheet" type="text/css" href="/css/visitor.css">
 </head>
 <body>
 <table border="1">
