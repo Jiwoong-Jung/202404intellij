@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.green.university.repository.interfaces.ScholarshipRepository">
+
+<select id="selectByStudentIdAndSemester" resultType="com.green.university.repository.model.Scholarship">
+	SELECT sch.max_amount, sch.type 
+	FROM scholarship_tb AS sch
+	JOIN stu_sch_tb AS ss
+	ON sch.type = ss.sch_type
+	WHERE ss.student_id = #{studentId} 
+		AND ss.sch_year = #{schYear} 
+		AND ss.semester = #{semester}
+</select>
+
+<insert id="insertCurrentSchType">
+	INSERT INTO stu_sch_tb
+	VALUES (#{studentId}, #{schYear}, #{semester}, #{schType})
+</insert>
+
+</mapper>

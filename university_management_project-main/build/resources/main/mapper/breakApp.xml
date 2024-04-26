@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.green.university.repository.interfaces.BreakAppRepository">
+
+<insert id="insert">
+	INSERT INTO break_app_tb (student_id, student_grade, from_year, from_semester, to_year, to_semester, type)
+	VALUES (#{studentId}, #{studentGrade}, #{fromYear}, #{fromSemester}, #{toYear}, #{toSemester}, #{type})
+</insert>
+
+<select id="selectByStudentId" resultType="com.green.university.repository.model.BreakApp">
+	SELECT * FROM break_app_tb WHERE student_id = #{studentId} ORDER BY id DESC
+</select>
+
+<select id="selectByStatus" resultType="com.green.university.repository.model.BreakApp">
+	SELECT * FROM break_app_tb WHERE status = #{status}
+</select>
+
+<select id="selectById" resultType="com.green.university.repository.model.BreakApp">
+	SELECT * FROM break_app_tb WHERE id = #{id}
+</select>
+
+<delete id="deleteById">
+	DELETE FROM break_app_tb WHERE id = #{id}
+</delete>
+
+<update id="updateById">
+	UPDATE break_app_tb SET status = #{status} WHERE id = #{id}
+</update>
+
+</mapper>

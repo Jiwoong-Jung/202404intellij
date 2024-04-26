@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.green.university.repository.interfaces.StuSubDetailRepository">
+	<update id="updateGrade">
+		UPDATE stu_sub_detail_tb SET
+		absent = #{absent},
+		lateness = #{lateness},
+		homework = #{homework},
+		mid_exam = #{midExam},
+		final_exam = #{finalExam},
+		converted_mark = #{convertedMark}
+		WHERE
+		student_id = #{studentId}
+		AND subject_id = #{subjectId}
+	</update>
+	
+	<insert id="insert">
+		INSERT INTO stu_sub_detail_tb (id, student_id, subject_id)
+		VALUES (#{id}, #{studentId}, #{subjectId})
+	</insert>
+
+</mapper>

@@ -1,0 +1,57 @@
+@charset "UTF-8";
+
+form {
+	margin-left: 30px;
+}
+
+.input--table {
+	margin: 10px 0;
+	width: 900px;
+}
+
+.input--table th {
+	text-align: center;
+	background-color: #F0EFEF;
+}
+
+.half--table {
+	width: 450px;
+}
+
+.col1 {
+	width: 15%;
+}
+
+.col2 {
+	width: 35%;
+}
+
+.col3 {
+	width: 15%;
+}
+
+.col4 {
+	width: 35%;
+}
+
+.input--table td {
+	padding: 5px 10px;
+}
+
+.stat--table {
+	width: 800px;
+}
+
+.stat--table th {
+	background-color: #F0EFEF;
+	text-align: center;
+}
+
+.stat--table td {
+	text-align: center;
+	width: 20%;
+}
+
+.update--button {
+	margin: 10px 0 20px;
+}

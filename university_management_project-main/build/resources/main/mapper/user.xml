@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.green.university.repository.interfaces.UserRepository">
+	<select id="selectById" resultType="com.green.university.dto.response.PrincipalDto">
+		SELECT u.*,
+		CASE WHEN sd.name IS NOT NULL THEN sd.name
+		WHEN sf.name IS NOT NULL THEN sf.name
+		WHEN p.name IS NOT NULL THEN p.name
+		END AS name
+		FROM user_tb AS u
+		LEFT JOIN student_tb AS sd
+		ON u.id = sd.id
+		LEFT JOIN staff_tb AS sf
+		ON u.id = sf.id
+		LEFT JOIN professor_tb AS p
+		ON u.id = p.id
+		where u.id = #{userId};
+	</select>
+
+	<update id="updatePassword">
+		UPDATE user_tb SET password = #{afterPassword}
+		WHERE id = #{id};
+	</update>
+
+	<insert id="insertToUser">
+		INSERT INTO user_tb
+		VALUES (#{id}, #{password}, #{userRole})
+	</insert>
+
+</mapper>

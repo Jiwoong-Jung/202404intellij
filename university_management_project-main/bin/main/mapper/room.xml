@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.green.university.repository.interfaces.RoomRepository">
+	<insert id="insert">
+		insert into room_tb (id, college_id)
+		values(#{id}, #{collegeId})
+	</insert>
+	<select id="selectByRoomDto" resultType="com.green.university.repository.model.Room">
+		select * from room_tb
+	</select>
+	<delete id="deleteById">
+		delete from room_tb where id = #{id}
+	</delete>
+</mapper>

@@ -1,0 +1,50 @@
+server:
+  port: 80
+  servlet: 
+    encoding:
+      charset: utf-8 
+      force: true
+  error:
+    include-exception: true
+    include-stacktrace: always
+    whitelabel:
+      enabled: false
+
+spring: 
+  mvc:
+    throw-exception-if-no-handler-found: true
+    dispatch-options-request: false
+    view:
+      prefix: /WEB-INF/view/ # jsp 파일 경로
+      suffix: .jsp # 확장자
+    hiddenmethod:
+      filter:
+        enabled: true # update, delete put방식으로 보내기 위한 설정
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB      
+  datasource: # DB 설정
+    url: jdbc:h2:mem:testdb;MODE=MySQL
+    driver-class-name: org.h2.Driver
+    username: user # 유저 이름
+    password: # 비밀번호 (비워두면 비밀번호 X)
+  sql: 
+    init: # 초기 sql 파일 읽기 
+      schema-locations: # 스키마 (테이블 생성 등)
+      - classpath:db/table.sql 
+      data-locations: # 샘플 데이터
+      - classpath:db/data.sql
+  h2: 
+    console: 
+      enabled: true
+  output: 
+    ansi: 
+      enabled: always
+
+mybatis:
+  mapper-locations:        
+  - classpath:mapper/**.xml 
+  configuration:
+    map-underscore-to-camel-case: true # DB의 underscore(snake case) 방식을 Java의 camel case 방식과 매핑
+    

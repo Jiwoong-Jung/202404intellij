@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.green.university.repository.interfaces.NoticeRepository">
+	<insert id="insert">
+		insert into notice_tb (title, category, content, created_time)
+		values(#{title}, #{category}, #{content}, now())
+	</insert>
+	<insert id="insertFile">
+		insert into notice_file_tb (notice_id, origin_filename, uuid_filename)
+		values(#{noticeId}, #{originFilename}, #{uuidFilename})
+	</insert>
+	<select id="selectLimit" resultType="Integer">
+		select id
+		from notice_tb
+		where title = #{title} and content = #{content}
+		order by id limit 1
+	</select>
+	<select id="selectByNoticeDto" resultType="com.green.university.dto.NoticeFormDto">
+		select * from notice_tb order by id DESC limit #{page}, 10
+	</select>
+	
+	<select id="selectLimit5" resultType="com.green.university.dto.NoticeFormDto">
+		SELECT * FROM notice_tb ORDER BY id DESC LIMIT 5
+	</select>
+	
+	<select id="selectById" resultType="com.green.university.repository.model.Notice">
+		SELECT n.*, f.uuid_filename, f.origin_filename
+		FROM notice_tb AS n
+		LEFT JOIN notice_file_tb AS f
+		ON n.id = f.notice_id
+		WHERE n.id = #{id}
+	</select>
+	<update id="updateByNoticeDto">
+		UPDATE notice_tb
+		SET title = #{title}, content = #{content}
+		WHERE id = #{id}
+	</update>
+	<delete id="deleteById">
+		delete from notice_tb where id = #{id}
+	</delete>
+	<select id="selectNoticeCount" resultType="Integer">
+		select count(id) from notice_tb
+	</select>
+	<select id="selectNoticeCountByKeyword" resultType="Integer">
+		select count(id) from notice_tb WHERE title LIKE CONCAT('%',#{keyword},'%') OR content LIKE CONCAT('%',#{keyword},'%')
+	</select>
+	<select id="selectNoticeCountByTitle" resultType="Integer">
+		select count(id) from notice_tb WHERE title LIKE CONCAT('%',#{keyword},'%')
+	</select>
+	<select id="selectNoticeByTitle" resultType="com.green.university.dto.NoticeFormDto">
+		SELECT * FROM notice_tb WHERE title LIKE CONCAT('%',#{keyword},'%')
+		ORDER BY id DESC 
+		LIMIT #{page}, 10
+	</select>
+	<select id="selectNoticeByKeyword" resultType="com.green.university.dto.NoticeFormDto">
+		SELECT * FROM notice_tb WHERE title LIKE CONCAT('%',#{keyword},'%') OR content LIKE CONCAT('%',#{keyword},'%')
+		ORDER BY id DESC 
+		LIMIT #{page}, 10
+	</select>
+	<update id="updateViews">
+		UPDATE notice_tb SET views = views + 1 WHERE id = #{id}
+	</update>
+</mapper>

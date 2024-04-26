@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.green.university.repository.interfaces.CollTuitRepository">
+	<insert id="insert">
+		insert into coll_tuit_tb (college_id, amount)
+		values(#{collegeId}, #{amount})
+	</insert>
+	<select id="selectByCollTuitDto" resultType="com.green.university.dto.CollTuitFormDto">
+		SELECT ct.college_id, c.name, ct.amount
+		FROM coll_tuit_tb AS ct
+		LEFT JOIN college_tb AS c
+		ON ct.college_id = c.id
+	</select>
+	<delete id="deleteById">
+		delete from coll_tuit_tb where college_id = #{collegeId}
+	</delete>
+	<update id="updateByCollTuitDto">
+		UPDATE coll_tuit_tb
+		SET amount = #{amount}
+		WHERE college_id = #{collegeId};
+	</update>
+</mapper>

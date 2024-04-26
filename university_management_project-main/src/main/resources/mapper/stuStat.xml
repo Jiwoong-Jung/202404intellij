@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.green.university.repository.interfaces.StuStatRepository">
+
+	<select id="selectByStudentIdOrderbyIdDesc" resultType="com.green.university.repository.model.StuStat">
+		SELECT * FROM stu_stat_tb WHERE student_id = #{studentId} ORDER BY id DESC
+	</select>
+
+	<insert id="insert">
+		INSERT INTO stu_stat_tb (student_id, status, from_date, to_date, break_app_id) VALUES (#{studentId}, #{status}, now(), #{toDate}, #{breakAppId})
+	</insert>
+
+
+	<update id="updateOldStatus">
+		UPDATE stu_stat_tb SET to_date = now() WHERE id = #{id}
+	</update>
+
+	<select id="selectStuStatListBystudentId" resultType="com.green.university.dto.response.StudentInfoStatListDto">
+		SELECT ss.id, ss.status, ss.from_date, ba.type AS detail, ba.status AS adopt, ba.to_year, ba.to_semester
+		FROM stu_stat_tb AS ss
+		LEFT JOIN break_app_tb AS ba
+		ON ss.break_app_id = ba.id
+		WHERE ss.student_id = #{studentId}
+		ORDER BY ss.id DESC
+	</select>
+
+
+
+</mapper>

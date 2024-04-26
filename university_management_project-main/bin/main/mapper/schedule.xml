@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.green.university.repository.interfaces.ScheuleRepository">
+
+
+
+<!-- 일정 추가 -->
+<insert id="insertSchoeduleFormDto">
+INSERT INTO schedule_tb
+(staff_id, start_day, end_day, information)
+VALUES
+(#{staffId}, #{startDay}, #{endDay}, #{information});
+</insert>
+
+<!-- 전체 조회 -->
+<select id="selectSchodule" resultType="com.green.university.repository.model.Schedule">
+SELECT id, staff_id, FORMATDATETIME(start_day,'MM-dd') AS start_day, FORMATDATETIME(end_day,'MM-dd') AS  end_day,
+information, YEAR(start_day) as years, MONTH(start_day) AS months
+FROM schedule_tb
+ORDER BY start_day;
+</select>
+
+<select id="selectScheduleById" resultType="com.green.university.dto.ScheduleDto">
+SELECT id, staff_id, FORMATDATETIME(start_day,'MM-dd') AS start_mday, 
+FORMATDATETIME(end_day,'MM-dd') AS  end_mday, staff_id,
+start_day, end_day, information, YEAR(start_day) as years
+FROM schedule_tb
+WHERE id = #{id};
+</select>
+
+<!-- 월마다 일정 몇개인지 조회 -->
+<select id="selectSchoduleMouth" resultType="com.green.university.dto.ScheduleDto">
+SELECT mouth, count(mouth) AS sum
+FROM schedule_tb
+GROUP BY mouth
+HAVING COUNT(mouth) > 1;
+</select>
+
+
+<update id="updateSchoeduleFormDtoBycontent">
+UPDATE schedule_tb 
+SET start_day = #{startDay}, end_day = #{endDay}, information = #{information} 
+WHERE id = #{id};
+</update>
+
+<delete id="deleteSchoeduleFormDtoByStaffIdAndId">
+DELETE FROM schedule_tb where id = #{id};
+</delete>
+
+<select id="selectListByMonth" resultType="com.green.university.repository.model.Schedule">
+SELECT * FROM schedule_tb WHERE MONTH(start_day) = #{month} OR MONTH(end_day) = #{month};
+</select>
+
+</mapper>

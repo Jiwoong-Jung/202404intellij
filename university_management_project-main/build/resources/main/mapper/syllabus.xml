@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.green.university.repository.interfaces.SyllaBusRepository">
+
+	<insert id="insertOnlySubId">
+		insert into syllabus_tb (subject_id)
+		values (#{subjectId})
+	</insert>
+
+	<select id="select" resultType="com.green.university.repository.model.SyllaBus">
+		select * from syllabus_tb order by subject_id
+	</select>
+
+	<delete id="delete">
+		delete from syllabus_tb where subject_id = #{subjectId}
+	</delete>
+
+	<update id="updateSyllabus">
+		UPDATE syllabus_tb SET
+		overview = #{overview},
+		objective = #{objective},
+		textbook = #{textbook},
+		program = #{program}
+		WHERE subject_id = #{subjectId}
+	</update>
+
+</mapper>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.green.university.repository.interfaces.EvaluationRepository">
+
+
+<!-- 강의평가 저장 -->
+
+<insert id="insert">
+INSERT INTO evaluation_tb
+(student_id, subject_id, answer1, answer2, answer3,
+ answer4, answer5, answer6, answer7, improvements)
+VALUES 
+( 
+#{studentId}, #{subjectId}, #{answer1}, 
+#{answer2}, #{answer3}, #{answer4}, #{answer5}, #{answer6}, #{answer7}, #{improvements}
+);
+</insert>
+
+<!-- 그 과목에 강의평가를 했는지 안했는지 확인 -->
+<select id="selectEvaluationFormDto" resultType="com.green.university.repository.model.Evaluation">
+SELECT *
+FROM evaluation_tb
+WHERE student_id = #{studentId};
+</select>
+
+<!-- 강의평가 조회 (교수)-->
+<select id="selectMyEvaluationDtoByProfessorId" resultType="com.green.university.dto.MyEvaluationDto">
+SELECT s.name, s.professor_id, e.*  
+FROM evaluation_tb AS e
+INNER JOIN subject_tb AS s
+ON e.subject_id = s.id
+WHERE s.professor_id = #{professorId};
+</select>
+
+<!-- 강의평가 과목 조회 -->
+<select id="selectEvaluationDto" resultType="com.green.university.dto.MyEvaluationDto">
+SELECT s.name  
+FROM evaluation_tb AS e
+INNER JOIN subject_tb AS s
+ON e.subject_id = s.id
+WHERE s.professor_id = #{professorId};
+</select>
+
+<!-- 과목별 강의 평가 조회 (교수) -->
+<select id="selectEvaluationDtoByprofessorIdAndName" resultType="com.green.university.dto.MyEvaluationDto">
+SELECT s.name, s.professor_id, e.*  
+FROM evaluation_tb AS e
+INNER JOIN subject_tb AS s
+ON e.subject_id = s.id
+WHERE s.professor_id = #{professorId} AND s.name= #{name} ;
+</select>
+
+
+
+</mapper>

@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+.list--table th {
+	padding: 3px 12px;
+	width: 150px;
+	text-align: center;
+	background-color: #F0EFEF;
+}
+
+.list--table td {
+	padding: 1px 5px;
+}
+
+.info--update--form {
+	margin-left: 20px;
+}
+
+.update--table td {
+	padding: 5px 10px;
+}
+
+.update--table label {
+	margin-bottom: 2px;
+}
+
+.button--td {
+	text-align: center;
+}

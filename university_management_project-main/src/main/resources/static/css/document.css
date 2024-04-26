@@ -1,0 +1,18 @@
+@charset "UTF-8";
+
+.document--layout {
+	border: 1px solid #4c4b4b;
+	padding: 50px 30px 30px 30px;
+	text-align: center;
+	margin-bottom: 30px;
+}
+
+.document--layout th {
+	text-align: center;
+	padding: 2px 20px;
+}
+
+.document--layout td {
+	text-align: right;
+	padding: 2px 8px 2px 50px;
+}
