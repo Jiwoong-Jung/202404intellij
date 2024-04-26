@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @Slf4j
@@ -53,6 +54,13 @@ public class PizzaController {
         pizza.setComplete(true);
         pizzaRepository.save(pizza);
         return "redirect:/orderList2";
+    }
+
+    @GetMapping("/orderList4")
+    @ResponseBody
+    public String orderList4(Long id) {
+
+        return "완성되었습니다.";
     }
 
 }
