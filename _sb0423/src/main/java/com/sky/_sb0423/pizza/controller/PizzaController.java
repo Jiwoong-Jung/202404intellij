@@ -63,4 +63,10 @@ public class PizzaController {
         return "완성되었습니다.";
     }
 
+    @GetMapping("/orderList123")
+    @ResponseBody
+    public String orderList123() {
+        return pizzaRepository.findAllByCompleteFalse().toString();
+    }
+
 }
