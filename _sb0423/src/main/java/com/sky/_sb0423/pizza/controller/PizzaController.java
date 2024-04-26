@@ -28,5 +28,10 @@ public class PizzaController {
         pizzaRepository.save(pizza);
         return "pizza/result";
     }
+    @GetMapping("/orderList")
+    public String orderList(Model model) {
+        model.addAttribute("list", pizzaRepository.findAllByCompleteFalse());
+        return "pizza/orderList";
+    }
 
 }
