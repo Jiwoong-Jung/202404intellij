@@ -17,13 +17,14 @@
             type: "GET", // 요청 유형 (GET, POST 등)
             success: function(data) {
                 console.log(data); // 성공적으로 데이터를 받으면 콘솔에 출력
+                // console.log("화면 수정");
                 $('#content').html(data);
             },
             error: function(error) {
                 console.log('Error: ' + error); // 에러가 발생하면 콘솔에 출력
             }
         });
-    }, 1000); // 10초마다 실행 (10000 밀리초 = 10초)
+    }, 1000); // 1초마다 실행 (10000 밀리초 = 10초)
 </script>
 </body>
 </html>

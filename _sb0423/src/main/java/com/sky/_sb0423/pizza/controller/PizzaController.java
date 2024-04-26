@@ -34,4 +34,25 @@ public class PizzaController {
         return "pizza/orderList";
     }
 
+    @GetMapping("/orderList2")
+    public String orderList2(Model model) {
+        model.addAttribute("list", pizzaRepository.findAllByCompleteFalse());
+        return "pizza/orderList2";
+    }
+
+    @GetMapping("/orderList3")
+    public String orderList3(Model model) {
+        model.addAttribute("list", pizzaRepository.findAllByCompleteFalse());
+        return "pizza/orderList3";
+    }
+
+    @GetMapping("/complete")
+    public String complete(Long id) {
+        log.info("피자번호 {}", id);
+        Pizza pizza = pizzaRepository.findById(id).orElseThrow();
+        pizza.setComplete(true);
+        pizzaRepository.save(pizza);
+        return "redirect:/orderList2";
+    }
+
 }
