@@ -6,6 +6,7 @@ import com.sky._sb0423.spring.AuthInfo;
 import com.sky._sb0423.spring.ChangePasswordService;
 import com.sky._sb0423.spring.WrongIdPasswordException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/edit/changePassword")
 @RequiredArgsConstructor
+@Slf4j
 public class ChangePwdController {
 
 	private final ChangePasswordService changePasswordService;
@@ -36,6 +38,7 @@ public class ChangePwdController {
 			return "edit/changePwdForm";
 		}
 		AuthInfo authInfo = (AuthInfo) session.getAttribute("authInfo");
+		log.info("{}", authInfo);
 		try {
 			changePasswordService.changePassword(
 					authInfo.getEmail(),

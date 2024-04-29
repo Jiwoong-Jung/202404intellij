@@ -1,5 +1,8 @@
 package com.sky._sb0423.spring;
 
+import lombok.ToString;
+
+@ToString
 public class AuthInfo {
 
 	private Long id;
