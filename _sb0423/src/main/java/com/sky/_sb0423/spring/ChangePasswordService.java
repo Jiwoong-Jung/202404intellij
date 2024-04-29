@@ -1,10 +1,14 @@
 package com.sky._sb0423.spring;
 
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+@Service
+@RequiredArgsConstructor
 public class ChangePasswordService {
 
-	private MemberDao memberDao;
+	private final MemberDao memberDao;
 
 	@Transactional
 	public void changePassword(String email, String oldPwd, String newPwd) {
@@ -17,8 +21,5 @@ public class ChangePasswordService {
 		memberDao.update(member);
 	}
 
-	public void setMemberDao(MemberDao memberDao) {
-		this.memberDao = memberDao;
-	}
 
 }
