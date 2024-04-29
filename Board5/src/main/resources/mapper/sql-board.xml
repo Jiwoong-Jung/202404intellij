@@ -118,6 +118,7 @@
 				idx,
 				board_idx,
 				original_file_name,
+				stored_file_path,
 				FORMAT(ROUND(file_size / 1024), 0) AS file_size
 			FROM
 				t_file

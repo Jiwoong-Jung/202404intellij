@@ -45,7 +45,13 @@
 		</form>
 		
 		<div class="file_list">
-			<a th:each="list : ${board.fileList}" th:href="@{/board/downloadBoardFile.do(idx=${list.idx}, boardIdx=${list.boardIdx})}" th:text="|${list.originalFileName} (${list.fileSize} kb)|"></a>
+			<th:block th:each="list : ${board.fileList}">
+				<p th:text="|${list.originalFileName} (${list.fileSize} kb) [${list.storedFilePath}]|"></p>
+				<img th:src="${list.storedFilePath}" />
+			</th:block>
+<!--			<a th:each="list : ${board.fileList}" th:href="@{/board/downloadBoardFile.do(idx=${list.idx}, boardIdx=${list.boardIdx})}" th:text="|${list.originalFileName} (${list.fileSize} kb)|">-->
+<!--			</a>-->
+
 		</div>
 		
 		<a href="#this" id="list" class="btn">목록으로</a>

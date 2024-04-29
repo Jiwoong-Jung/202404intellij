@@ -4,13 +4,18 @@ import com.example.shop.item.dto.ItemSearchDto;
 import com.example.shop.item.service.ItemService;
 import com.example.shop.main.dto.MainItemDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.net.MalformedURLException;
 import java.util.Optional;
 
 @Controller
@@ -31,5 +36,6 @@ public class MainController {
 
         return "main";
     }
+
 }
 
