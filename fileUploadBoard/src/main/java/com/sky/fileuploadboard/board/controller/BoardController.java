@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.net.URLEncoder;
+import java.nio.file.Paths;
 import java.util.List;
 
 @Controller
@@ -68,11 +69,13 @@ public class BoardController {
 	
 	@RequestMapping("board/downloadBoardFile.do")
 	public void downloadBoardFile(@RequestParam int idx, @RequestParam int boardIdx, HttpServletResponse response) throws Exception{
+		String currentPath = Paths.get("").toAbsolutePath().toString();
+		System.out.println("---------------------"+currentPath);
 		BoardFileDto boardFile = boardService.selectBoardFileInformation(idx, boardIdx);
 		if(ObjectUtils.isEmpty(boardFile) == false) {
 			String fileName = boardFile.getOriginalFileName();
 			
-			byte[] files = FileUtils.readFileToByteArray(new File(boardFile.getStoredFilePath()));
+			byte[] files = FileUtils.readFileToByteArray(new File("./src/main/resources/static"+boardFile.getStoredFilePath()));
 			
 			response.setContentType("application/octet-stream");
 			response.setContentLength(files.length);
