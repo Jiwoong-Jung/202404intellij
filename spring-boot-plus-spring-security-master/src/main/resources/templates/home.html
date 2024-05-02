@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Spring Boot + Spring Security</title>
+</head>
+<body>
+
+    <table border="1">
+        <tr th:each="employee : ${employees}">
+            <td th:text="${employee.name}" >Name</td>
+            <td th:text="${employee.role}" >Role</td>
+            <td th:if="${isManager == true}">
+                <form th:method="delete" th:action="@{'/delete/' + ${employee.id}}">
+                    <input type="Submit" value="Delete"/>
+                </form>
+            </td>
+        </tr>
+    </table>
+
+    <form th:if="${isManager == true}" th:method="post" th:action="${'/add'}" th:object="${newEmployee}">
+        <input type="text" th:field="*{name}"/>
+        <input type="text" th:field="*{role}"/>
+        <input type="submit" value="Add new employee" />
+    </form>
+
+</body>
+</html>

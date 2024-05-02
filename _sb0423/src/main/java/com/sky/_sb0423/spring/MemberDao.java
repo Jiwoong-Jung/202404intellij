@@ -9,6 +9,7 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
@@ -86,5 +87,36 @@ public class MemberDao {
 				"select count(*) from MEMBER", Integer.class);
 		return count;
 	}
+
+	public List<Member> selectByRegdate(LocalDateTime from, LocalDateTime to) {
+		List<Member> results = jdbcTemplate.query(
+				"select * from MEMBER where REGDATE between ? and ? " +
+						"order by REGDATE desc",
+				memRowMapper,
+				from, to);
+		return results;
+	}
+
+	public Member selectById(Long memId) {
+		List<Member> results = jdbcTemplate.query(
+				"select * from MEMBER where ID = ?",
+				memRowMapper, memId);
+
+		return results.isEmpty() ? null : results.get(0);
+	}
+
+	private RowMapper<Member> memRowMapper =
+			new RowMapper<Member>() {
+				@Override
+				public Member mapRow(ResultSet rs, int rowNum)
+						throws SQLException {
+					Member member = new Member(rs.getString("EMAIL"),
+							rs.getString("PASSWORD"),
+							rs.getString("NAME"),
+							rs.getTimestamp("REGDATE").toLocalDateTime());
+					member.setId(rs.getLong("ID"));
+					return member;
+				}
+			};
 
 }

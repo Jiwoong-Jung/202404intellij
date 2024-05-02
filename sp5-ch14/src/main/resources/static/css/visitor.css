@@ -1,0 +1,42 @@
+@charset "UTF-8";
+@font-face {
+    font-family: 'KOTRA_BOLD-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.1/KOTRA_BOLD-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+* {
+		font-family: 'KOTRA_BOLD-Bold';
+}
+body {
+		text-align : center;		
+}
+h1 {
+		text-shadow : 2px 2px 5px lime;
+		font-size : 3em;
+}
+textarea {
+		margin : 10px;	
+}
+
+table {
+	margin: 5px auto;
+}
+
+td {
+	border-bottom: 1px dotted black;
+	padding: 10px;
+	text-align: left;
+}
+
+tr:hover {
+	background-color: pink;
+}
+
+div {
+	margin: 10px auto;
+	padding: 50px;
+	background: linear-gradient(to bottom, #33ccff 0%, #ff99cc 100%);
+	width: 800px;
+	border-radius: 5px;
+}

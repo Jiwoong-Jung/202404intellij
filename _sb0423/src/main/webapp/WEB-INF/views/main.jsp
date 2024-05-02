@@ -11,6 +11,7 @@
     <p>
         <a href="<c:url value="/register/step1" />">[회원 가입하기]</a>
         <a href="<c:url value="/login" />">[로그인]</a>
+        <a href="<c:url value="/members" />">[회원 보기]</a>
     </p>
 </c:if>
 
@@ -19,6 +20,7 @@
     <p>
         <a href="<c:url value="/edit/changePassword" />">[비밀번호 변경]</a>
         <a href="<c:url value="/logout" />">[로그아웃]</a>
+        <a href="<c:url value="/members" />">[회원 보기]</a>
     </p>
 </c:if>
 </body>
