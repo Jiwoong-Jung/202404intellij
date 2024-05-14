@@ -1,0 +1,35 @@
+/* Search box css */
+.box_search {
+    position: relative;
+    border: 1px solid;
+    border-radius: 10px;
+    width: 31em;
+    height: 2.5em;
+    padding: 0.5em;
+}
+
+.search_option {
+    margin: 0;
+    padding: 0;
+}
+
+.search_input {
+    width: 24em;
+    border: 0;
+}
+
+.search_input:focus {
+    outline: none;
+}
+
+.box_search_img {
+    position: absolute;
+    right: 10px;
+}
+
+/* Toast CSS */
+.toast_container {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}

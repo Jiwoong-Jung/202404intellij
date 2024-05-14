@@ -1,0 +1,98 @@
+name: build
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches: [ '**' ]
+  repository_dispatch:
+    types: [ 'movie-harness-change' ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: with jdk ${{ matrix.java }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java: [ '17', '21' ]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ matrix.java }}
+          distribution: temurin
+      - name: Cache local Maven repository
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+      - name: Build with Maven
+        run: ./mvnw --no-transfer-progress clean verify
+
+  e2e:
+    needs: build
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        neo4j-version: [ "4.4", "4.4-enterprise", "5", "5-enterprise" ]
+    services:
+      neo4j:
+        image: neo4j:${{ matrix.neo4j-version }}
+        ports: [ "7687:7687" ]
+        env:
+          NEO4J_ACCEPT_LICENSE_AGREEMENT: yes
+
+          NEO4J_AUTH: "neo4j/it_is_now_verysecret"
+        options: >-
+          --name neo4j-e2e
+          --health-cmd "cypher-shell -u neo4j -p it_is_now_verysecret 'RETURN 1'"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-start-period 10s
+          --health-retries 5
+          --volume /tmp:/movies
+    steps:
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: 17
+          distribution: temurin
+      - name: Cache local Maven repository
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+      - name: Download dataset
+        run: curl --fail --output /tmp/movies.cypher https://raw.githubusercontent.com/neo4j-graph-examples/movies/7e75003d2d32bf42ef9c740d1321a310fac1d1a6/scripts/movies.cypher
+      - name: Import dataset
+        run: docker exec --interactive neo4j-e2e cypher-shell -u neo4j -p it_is_now_verysecret --file /movies/movies.cypher
+      - name: Check out project sources
+        uses: actions/checkout@v4
+      - name: Check out test harness sources
+        uses: actions/checkout@v4
+        with:
+          repository: neo4j-examples/movies-harness
+          path: e2e
+          ref: ${{ github.event.client_payload.sha }}
+      - uses: cypress-io/github-action@v6
+        env:
+          NEO4J_VERSION: ${{ matrix.neo4j-version }}
+          NEO4J_URI: bolt://localhost
+          NEO4J_DATABASE: neo4j
+          NEO4J_USER: neo4j
+
+          NEO4J_PASSWORD: it_is_now_verysecret
+        with:
+          working-directory: e2e
+          browser: chrome
+          start: mvn spring-boot:run --file ..
+          wait-on: 'http://localhost:8080'

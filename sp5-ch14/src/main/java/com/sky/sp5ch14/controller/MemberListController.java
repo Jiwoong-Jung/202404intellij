@@ -18,9 +18,6 @@ public class MemberListController {
 	private final MemberDao memberDao;
 
 	@RequestMapping("/members")
-//	public String list(
-//			@ModelAttribute("cmd") ListCommand listCommand,
-//			Errors errors, Model model) {
 	public String list(
 			@ModelAttribute("cmd") ListCommand listCommand,
 			Errors errors, Model model) {

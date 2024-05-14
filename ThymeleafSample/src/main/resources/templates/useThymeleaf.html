@@ -3,10 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Thymeleaf Sample</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
 </head>
 <body>
+<div>
+	<p class="my_btn">버튼</p>
+</div>
 	<!-- 01: 직접 문자를 삽입 -->
-	<h1 th:text="'hello world'">표시하는 부분</h1>
+	<h1 th:text="'hello world'" style="background-color: antiquewhite">표시하는 부분</h1>
 	<!-- 02: 인라인 처리 -->
 	<h1>안녕하세요！[[${name}]]씨</h1>
 	<!-- 03: 값 결합 -->

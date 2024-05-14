@@ -1,0 +1,60 @@
+= Movies Example Application
+
+image:https://github.com/neo4j-examples/movies-java-spring-data-neo4j/actions/workflows/build.yml/badge.svg?event=push[Build Status,link=https://github.com/neo4j-examples/movies-java-spring-data-neo4j/actions/workflows/build.yml]
+
+How to use Spring Boot, Spring Data, and Neo4j together.
+
+Spring Data Neo4j enables convenient integration of Neo4j in your Spring-based application.
+It provides object-graph mapping (OGM) functionality and other features common to the Spring Data projects.
+
+[NOTE]
+This project uses Spring Data Neo4j 6. The previous version, using SDN 5 + OGM can still be accessed under the
+https://github.com/neo4j-examples/movies-java-spring-data-neo4j/tree/sdn5-ogm branch.
+
+[NOTE]
+For a broader overview of Spring Data Neo4j 6 with the same dataset, you can access the
+https://github.com/neo4j-examples/movies-java-spring-data-neo4j/tree/sdn6-full-example branch.
+
+The example project is described in detail on the https://neo4j.com/developer/example-project/[Neo4j Developer Site]
+
+The project uses Java 17.
+
+== The Stack
+
+These are the components of our Web Application:
+
+* Application Type:         Spring-Boot Java Web Application
+* Web framework:            Spring-Boot enabled Spring-WebMVC
+* Persistence Access:       Spring-Data-Neo4j 6.x
+* Database:                 Neo4j-Server 4.4, or 5.x
+* Frontend:                 jquery, bootstrap, http://d3js.org/[d3.js]
+
+Provision a database quickly with https://sandbox.neo4j.com/?usecase=movies[Neo4j Sandbox] or https://neo4j.com/cloud/aura/[Neo4j Aura].
+
+== Configuration options
+
+[%header,cols=2*]
+|===
+|Environment variable name
+|Default value (or N/A)
+
+|PORT
+|8080
+
+|NEO4J_URI
+|neo4j+s://demo.neo4jlabs.com
+
+|NEO4J_USER
+|movies
+
+|NEO4J_PASSWORD
+|movies
+
+|NEO4J_DATABASE
+|movies
+
+|NEO4J_VERSION
+|4
+|===
+
+Please set `NEO4J_VERSION` to `3.5` when running Neo4j 3.5.x. Leave as is otherwise.

@@ -6,9 +6,11 @@ import java.time.LocalDateTime;
 
 public class ListCommand {
 
-	@DateTimeFormat(pattern = "yyyyMMddHH")
+//	@DateTimeFormat(pattern = "yyyyMMddHH")
+	@DateTimeFormat(pattern = "yyyyMM")
 	private LocalDateTime from;
-	@DateTimeFormat(pattern = "yyyyMMddHH")
+//	@DateTimeFormat(pattern = "yyyyMMddHH")
+	@DateTimeFormat(pattern = "yyyyMM")
 	private LocalDateTime to;
 
 	public LocalDateTime getFrom() {
