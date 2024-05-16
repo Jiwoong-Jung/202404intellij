@@ -1,0 +1,11 @@
+server:
+  port: 8086
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: admin
+    password: admin
+    virtual-host: vhost-01
+rabbitmq:
+  queue: queue-01

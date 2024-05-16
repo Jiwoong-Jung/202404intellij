@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+		PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+		"http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<properties resource="application.properties"/>
+	<classPathEntry location="${mbg.jdbc.driver-location}"/>
+	<context id="mysql" defaultModelType="conditional" targetRuntime="MyBatis3">
+		<property name="javaFileEncoding" value="UTF-8"/>
+		<property name="beginningDelimiter" value="`"/>
+		<property name="endingDelimiter" value="`"/>
+		<plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"/>
+		<commentGenerator>
+			<property name="suppressAllComments" value="true"/>
+		</commentGenerator>
+		<jdbcConnection driverClass="${mbg.jdbc.driver-class-name}"
+						connectionURL="${mbg.jdbc.url}"
+						userId="${mbg.jdbc.username}"
+						password="${mbg.jdbc.password}">
+		</jdbcConnection>
+		<javaModelGenerator targetProject="${mbg.target-project.java}"
+							targetPackage="${mbg.target-package.domain}">
+			<property name="enableSubPackages" value="true"/>
+			<property name="trimStrings" value="true"/>
+		</javaModelGenerator>
+		<sqlMapGenerator targetProject="${mbg.target-project.resources}"
+						 targetPackage="${mbg.target-package.mapper}">
+			<property name="enableSubPackages" value="true"/>
+		</sqlMapGenerator>
+		<javaClientGenerator type="XMLMAPPER"
+							 targetProject="${mbg.target-project.java}"
+							 targetPackage="${mbg.target-package.mapper}">
+			<property name="enableSubPackages" value="true"/>
+		</javaClientGenerator>
+		<table tableName="user">
+			<columnOverride column="password_hash" javaType="java.lang.String"/>
+		</table>
+		<table tableName="post"/>
+	</context>
+</generatorConfiguration>

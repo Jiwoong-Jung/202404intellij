@@ -1,0 +1,12 @@
+server:
+  port: 8080
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: admin
+    password: admin
+    virtual-host: vhost-01
+rabbitmq:
+  exchange: exchange-01
+  bindkey: binding_key
