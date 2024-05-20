@@ -1,0 +1,11 @@
+{{>layout/header}}
+
+<h2>사용자 화면</h2>
+<p>사용자 권한 확인 용</p>
+
+<br><br><br>
+
+<a href="/admins" class="btn btn-secondary active" role="button">관리자</a>
+<a href="/logout" class="btn btn-info active" role="button">Logout</a><!--스프링시큐리티에서 기본적으로 제공하는 로그아웃 url-->
+{{user}}
+{{>layout/footer}}

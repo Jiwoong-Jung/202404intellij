@@ -28,6 +28,7 @@ dependencies {
     runtimeOnly 'com.mysql:mysql-connector-j'
     implementation 'org.springframework.boot:spring-boot-starter-jdbc'
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
+    runtimeOnly 'com.oracle.database.jdbc:ojdbc11'
 //    compileOnly 'org.projectlombok:lombok'
 //    annotationProcessor 'org.projectlombok:lombok'
 
@@ -50,6 +51,7 @@ mybatisGenerator {
         mybatisGenerator 'org.mybatis.generator:mybatis-generator-core:1.4.0'
         mybatisGenerator 'mysql:mysql-connector-java:8.0.22'
         mybatisGenerator 'org.mariadb.jdbc:mariadb-java-client:2.7.1'
+        mybatisGenerator 'com.oracle.database.jdbc:ojdbc11'
     }
 }
 

@@ -1,0 +1,49 @@
+{{>layout/header}}
+
+<h2>회원가입 화면 </h2>
+<form class="form-signin" method="post" action="/login/join">
+
+    <span><input type="text" id="username" name="username" class="form-control" placeholder="아이디" autofocus="" /></span>
+    <br><br>
+    <input type="text" id="password" name="password" class="form-control" placeholder="비밀번호" />
+
+    <br><br><br>
+    <div style="text-align: center">
+        <input id="joinBtn" style="display :inline-block;"type="submit" class="btn btn-info active" value="회원가입" />
+    </div>
+</form>
+
+
+{{>layout/footer}}
+
+<script>
+let flag = 0;
+
+$("#duplicateChek").click(function(){
+
+    let username = $("#username").val();
+    console.log(username);
+    $.ajax({
+        type: 'GET',
+        url: '/user/'+ username +'/exists',
+        dataType : 'json',
+        contentType: 'application/json; charset=utf-8',
+    }).done(function(data){
+        console.log(data);
+        if(data == false){
+            alert("사용 가능한 ID 입니다. ");
+            $("#joinBtn").attr("disabled", false);
+        }else{
+            alert("이미 가입된 회원입니다.");
+            $("#username").val("");
+        }
+
+    }).fail(function(error){
+        console.log(error);
+        alert(JSON.stringify(error));
+        console.log(error);
+    });
+});
+
+
+</script>

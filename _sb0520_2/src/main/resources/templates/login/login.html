@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login</title>
+</head>
+<body>
+<h2>로그인 화면 </h2>
+<form method="post" th:action="@{/login/login-proc}">
+
+    <input type="text" id="username" name="username" placeholder="아이디" autofocus="" />
+    <input type="text" id="password" name="password" placeholder="비밀번호" />
+
+
+
+    <input id="joinBtn" type="submit" value="로그인" />
+    <a href="/login/join" role="button">회원가입</a>
+
+</form>
+</body>
+</html>

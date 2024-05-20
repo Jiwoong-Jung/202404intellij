@@ -36,6 +36,9 @@ class MovieServiceTest {
 
     @BeforeEach
     void setup(@Autowired Driver driver) {
+
+
+
         try (Session session = driver.session()) {
             session.executeWrite(tx -> {
                 tx.run("MATCH (n) DETACH DELETE n");
