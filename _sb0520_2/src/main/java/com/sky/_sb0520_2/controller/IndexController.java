@@ -18,7 +18,12 @@ public class IndexController {
     private final MemberService memberService;
 
     @GetMapping("/")
-    public String index(){
+    public String index(@AuthenticationPrincipal UserDetails user, Model model){
+        if (user != null) {
+            model.addAttribute("user",user.getUsername());
+        } else {
+            model.addAttribute("user","로그인 안된 ");
+        }
 
         return "index";
     }
@@ -37,7 +42,6 @@ public class IndexController {
 
     @PostMapping("/login/join")
     public String userJoin(@ModelAttribute MemberJoinRequestDto requestDto) {
-//        int error = 4/0;
         memberService.addUser(requestDto);
 
         return "login/login";

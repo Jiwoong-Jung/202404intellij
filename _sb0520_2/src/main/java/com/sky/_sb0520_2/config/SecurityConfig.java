@@ -46,7 +46,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests((authorizeRequests) ->
                         authorizeRequests
 //                                .requestMatchers(PathRequest.toH2Console()).permitAll()
-                                .requestMatchers("/", "/login/**").permitAll()
+                                .requestMatchers("/", "/login/**", "/error/**").permitAll()
                                 .requestMatchers("/posts/**", "/api/v1/posts/**").hasRole(Role.USER.name())
                                 .requestMatchers("/admins/**", "/api/v1/admins/**").hasRole(Role.ADMIN.name())
                                 .anyRequest().authenticated()
@@ -71,26 +71,32 @@ public class SecurityConfig {
     }
 
     public final AuthenticationEntryPoint unauthorizedEntryPoint =
-            (request, response, authException) -> {
-                ErrorResponse fail = new ErrorResponse(HttpStatus.UNAUTHORIZED, "Spring security unauthorized...");
-                response.setStatus(HttpStatus.UNAUTHORIZED.value());
-                String json = new ObjectMapper().writeValueAsString(fail);
-                response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-                PrintWriter writer = response.getWriter();
-                writer.write(json);
-                writer.flush();
-            };
+    (request, response, authException) -> {
+        response.sendRedirect("/error/unauthorized.html");
+    };
+        //     (request, response, authException) -> {
+        //         ErrorResponse fail = new ErrorResponse(HttpStatus.UNAUTHORIZED, "Spring security unauthorized...");
+        //         response.setStatus(HttpStatus.UNAUTHORIZED.value());
+        //         String json = new ObjectMapper().writeValueAsString(fail);
+        //         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+        //         PrintWriter writer = response.getWriter();
+        //         writer.write(json);
+        //         writer.flush();
+        //     };
 
     public  final AccessDeniedHandler accessDeniedHandler =
-            (request, response, accessDeniedException) -> {
-                ErrorResponse fail = new ErrorResponse(HttpStatus.FORBIDDEN, "Spring security forbidden...");
-                response.setStatus(HttpStatus.FORBIDDEN.value());
-                String json = new ObjectMapper().writeValueAsString(fail);
-                response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-                PrintWriter writer = response.getWriter();
-                writer.write(json);
-                writer.flush();
-            };
+    (request, response, accessDeniedException) -> {
+        response.sendRedirect("/error/accessDenied.html");
+    };
+        //     (request, response, accessDeniedException) -> {
+        //         ErrorResponse fail = new ErrorResponse(HttpStatus.FORBIDDEN, "Spring security forbidden...");
+        //         response.setStatus(HttpStatus.FORBIDDEN.value());
+        //         String json = new ObjectMapper().writeValueAsString(fail);
+        //         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+        //         PrintWriter writer = response.getWriter();
+        //         writer.write(json);
+        //         writer.flush();
+        //     };
 
     @Getter
     @RequiredArgsConstructor
