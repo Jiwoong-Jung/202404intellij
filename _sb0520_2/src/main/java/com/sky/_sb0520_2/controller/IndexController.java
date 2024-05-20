@@ -1,12 +1,14 @@
 package com.sky._sb0520_2.controller;
 
 import com.sky._sb0520_2.member.MemberJoinRequestDto;
+import com.sky._sb0520_2.member.MemberRepository;
 import com.sky._sb0520_2.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class IndexController {
 
     private final MemberService memberService;
+    private final MemberRepository memberRepository;
 
     @GetMapping("/")
     public String index(@AuthenticationPrincipal UserDetails user, Model model){
@@ -42,6 +45,9 @@ public class IndexController {
 
     @PostMapping("/login/join")
     public String userJoin(@ModelAttribute MemberJoinRequestDto requestDto) {
+        if (memberRepository.findByUsername(requestDto.getUsername()).isPresent()) {
+            throw new IllegalArgumentException("Username already exists");
+        }
         memberService.addUser(requestDto);
 
         return "login/login";
@@ -57,6 +63,11 @@ public class IndexController {
     public String posts(@AuthenticationPrincipal UserDetails user, Model model){
         model.addAttribute("user",user.getUsername());
         return "post/post";
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public String illegalArgumentException() {
+        return "error/error";
     }
 
 }
