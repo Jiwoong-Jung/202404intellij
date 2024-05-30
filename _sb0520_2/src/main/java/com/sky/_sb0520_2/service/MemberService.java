@@ -14,11 +14,11 @@ public class MemberService {
     private final PasswordEncoder passwordEncoder;
 
     public String addUser(MemberJoinRequestDto requestDto) {
-        if (memberRepository.findByUsername(requestDto.getUsername()).isPresent()) {
-            throw new IllegalArgumentException("Username already exists");
-        }
-        return memberRepository.save(requestDto.toEntity(passwordEncoder)).getUsername();
-        // return memberRepository.save(requestDto.toEntity(passwordEncoder)).getUsername();
+//        if (memberRepository.findByUsername(requestDto.getUsername()).isPresent()) {
+//            throw new IllegalArgumentException("Username already exists");
+//        }
+//        return memberRepository.save(requestDto.toEntity(passwordEncoder)).getUsername();
+         return memberRepository.save(requestDto.toEntity(passwordEncoder)).getUsername();
     }
 
 

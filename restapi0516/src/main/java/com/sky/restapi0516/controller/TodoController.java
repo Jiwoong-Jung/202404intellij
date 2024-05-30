@@ -1,6 +1,7 @@
 package com.sky.restapi0516.controller;
 
 import com.sky.restapi0516.dto.ResponseDTO;
+import com.sky.restapi0516.entity.TodoEntity;
 import com.sky.restapi0516.repository.TodoRepository;
 import com.sky.restapi0516.service.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @RestController
@@ -34,6 +36,11 @@ public class TodoController {
     list.add(str);
     ResponseDTO<String> response = ResponseDTO.<String>builder().data(list).build();
     return ResponseEntity.ok().body(response);
+  }
+
+  @GetMapping("/groups")
+  Collection<TodoEntity> groups() {
+    return todoRepository.findAll();
   }
 
 }
